@@ -6,7 +6,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="Server">
     <p>
-        <h3>Manage Clients
+        <h3>Manage Candidates
         </h3>
     </p>
     <table cellpadding="0" cellspacing="0" border="0" class="display" id="tblData" width="100%">
@@ -38,99 +38,79 @@
         <input type="hidden" id='txtID' value='0' />
         <table>
             <tr>
-                <td>TopLevel Client Name
+                <td>First Name
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddltlclients" DataTextField="Name" ClientIDMode="Static" CssClass="txtsmall"
-                        DataValueField="id" runat="server">
-                    </asp:DropDownList>
+                    <input id='txtFirstName' type="text" class="txtsmall" />
                 </td>
             </tr>
             <tr>
-                <td>Client Name
+                <td>Last Name
                 </td>
                 <td>
-                    <input id='txtClient_Name' type="text" class="txtsmall" />
+                    <input id='txtLastName' type="text" class="txtsmall" />
                 </td>
             </tr>
             <tr>
                 <td>Email
                 </td>
                 <td>
-                    <input id='txtemail' type="text" class="txtsmall" />
-                </td>
-            </tr>
-            <tr>
-                <td>Stat
-                </td>
-                <td>
-                    <input id='txtstat' type="text" class="txtsmall" />
-                </td>
-            </tr>
-            <tr>
-                <td>City
-                </td>
-                <td>
-                    <input id='txtcity' type="text" class="txtsmall number" />
-                </td>
-            </tr>
-            <tr>
-                <td>Zip
-                </td>
-                <td>
-                    <input id='txtzip' type="text" class="txtsmall" />
-                </td>
-            </tr>
-            <tr>
-                <td>Contact First Name
-                </td>
-                <td>
-                    <input id='txtcontactfristname' type="text" class="txtsmall" />
-                </td>
-            </tr>
-            <tr>
-                <td>Contact Last Name
-                </td>
-                <td>
-                    <input id='txtcontactlastname' type="text" class="txtsmall" />
+                    <input id='txtEmail' type="text" class="txtsmall" />
                 </td>
             </tr>
             <tr>
                 <td>Phone Primary
                 </td>
                 <td>
-                    <input id='txtphoneprimary' type="text" class="txtsmall" />
+                    <input id='txtPhonePrimary' type="text" class="txtsmall" />
                 </td>
             </tr>
             <tr>
                 <td>Phone Secondary
                 </td>
                 <td>
-                    <input id='txtphonesecondary' type="text" class="txtsmall" />
+                    <input id='txtPhoneSecondary' type="text" class="txtsmall" />
                 </td>
             </tr>
+            <tr>
+                <td>City
+                </td>
+                <td>
+                    <input id='txtCity' type="text" class="txtsmall number" />
+                </td>
+            </tr>
+            <tr>
+                <td>Stat
+                </td>
+                <td>
+                    <input id='txtStat' type="text" class="txtsmall" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>Zip
+                </td>
+                <td>
+                    <input id='txtZip' type="text" class="txtsmall" />
+                </td>
+            </tr>
+
+
             <tr>
                 <td>Address 1
                 </td>
                 <td>
-                    <input id='txtaddress' type="text" class="txtsmall" />
+                    <input id='txtAddress1' type="text" class="txtsmall" />
                 </td>
             </tr>
             <tr>
                 <td>Address 2
                 </td>
                 <td>
-                    <input id='txtaddress2' type="text" class="txtsmall" />
+                    <input id='txtAddress2' type="text" class="txtsmall" />
                 </td>
             </tr>
-            <tr id="trSendEmail">
-                <td></td>
-                <td>
-                    <input type="checkbox" id="chkSend_Email" />
-                    <label for="chkSend_Email">
-                        Send Email</label>
-                </td>
-            </tr>
+
         </table>
     </div>
     <script type="text/javascript">
@@ -149,7 +129,7 @@
                 "sPaginationType": "full_numbers",
                 "bProcessing": true,
                 "bServerSide": true,
-                "sAjaxSource": "ManageClients.aspx?key=GetDataTable",
+                "sAjaxSource": "ManageCandidates.aspx?key=GetDataTable",
                 "fnDrawCallback": function () {
                     var d = $("#btnAddNewRow").attr("id") + "";
                     if (d == "" || d == "null" || d == "undefined") {
@@ -165,7 +145,7 @@
                 modal: true,
                 resizable: true,
                 width: 450,
-                title: "Client Detail",
+                title: "Candidate Detail",
                 buttons: [
                     {
                         text: "Close",
@@ -187,8 +167,6 @@
             $("#txtID").val("0");
             $("input[type='text'], select").val("");
             $("input[type='checkbox'], input[type='radio']").attr("checked", false);
-            $("#txtPassword").val("");
-            $("#trSendEmail").show();
         }
         function AddNew() {
             ClearForm();
@@ -198,24 +176,21 @@
 
             var user = {
                 Id: $("#txtID").val(),
-                Name: $("#txtClient_Name").val(),
-                TopLevelClientId: $("#ddltlclients").val(),
-                TopLevelClientName: $("#ddltlclients option:selected").text(),
-                City: $("#txtcity").val(),
-                State: $("#txtstat").val(),
-                Zip: $("#txtzip").val(),
-                Email: $("#txtemail").val(),
-                ContactFirstName: $("#txtcontactfristname").val(),
-                ContactLastName: $("#txtcontactlastname").val(),
-                PhonePrimary: $("#txtphoneprimary").val(),
-                PhoneSecondary: $("#txtphonesecondary").val(),
-                Address1: $("#txtaddress").val(),
-                Address2: $("#txtaddress2").val()
+                FirstName: $("#txtFirstName").val(),
+                LastName: $("#txtLastName").val(),
+                City: $("#txtCity").val(),
+                State: $("#txtStat").val(),
+                Zip: $("#txtZip").val(),
+                Email: $("#txtEmail").val(),
+                PhonePrimary: $("#txtPhonePrimary").val(),
+                PhoneSecondary: $("#txtPhoneSecondary").val(),
+                Address1: $("#txtAddress1").val(),
+                Address2: $("#txtAddress2").val()
             };
             var d = "Key=Save";
             d += "&record=" + JSON.stringify(user);
             $.ajax({
-                url: "ManageClients.aspx",
+                url: "ManageCandidates.aspx",
                 type: "POST",
                 data: d,
                 success: function (response) {
@@ -243,7 +218,7 @@
                 var d = "key=Delete";
                 d += "&id=" + id;
                 $.ajax({
-                    url: "ManageClients.aspx",
+                    url: "ManageCandidates.aspx",
                     type: "POST",
                     data: d,
                     success: function (response) {
@@ -258,7 +233,7 @@
             var d = "key=GetByID";
             d += "&id=" + id;
             $.ajax({
-                url: "ManageTlClients.aspx",
+                url: "ManageCandidates.aspx",
                 type: "POST",
                 data: d,
                 success: function (response) {
@@ -266,53 +241,20 @@
                     if (j != null) {
                         ClearForm();
                         $("#txtID").val(j.Id);
-                        $("#txtClient_Name").val(j.Name);
-                        $("#ddltlclients").val(j.TopLevelClientId);
-                        $("#txtemail").val(j.Email)
-                        $("#txtstat").val(j.State);
-                        $("#txtcity").val(j.City);
-                        $("#txtzip").val(j.Zip);
-                        $("#txtcontactfristname").val(j.ContactFirstName);
-                        $("#txtcontactlastname").val(j.ContactLastName);
-                        $("#txtphoneprimary").val(j.PhonePrimary);
-                        $("#txtphonesecondary").val(j.PhoneSecondary);
-                        $("#txtaddress").val(j.Address1);
-                        $("#txtaddress2").val(j.Address2);
-                        $("#trSendEmail").hide();
-
+                        $("#txtFirstName").val(j.FirstName);
+                        $("#txtLastName").val(j.LastName);
+                        $("#txtEmail").val(j.Email)
+                        $("#txtStat").val(j.State);
+                        $("#txtCity").val(j.City);
+                        $("#txtZip").val(j.Zip);
+                        $("#txtPhonePrimary").val(j.PhonePrimary);
+                        $("#txtPhoneSecondary").val(j.PhoneSecondary);
+                        $("#txtAddress1").val(j.Address1);
+                        $("#txtAddress2").val(j.Address2);
                     }
                 }
             });
             $("#divdialog").dialog("open");
-        }
-        function ChangeStatus(el) {
-            var id = $(el).attr("data-id");
-            var status = $(el).attr("status-id");
-            var img = "";
-            var title = "";
-            if (status == "True") {
-                status = "False";
-                img = "images/status-offline.png";
-                title = "Click to make it active";
-            }
-            else {
-                status = "True";
-                img = "images/status-online.png";
-                title = "Click to make it inactive";
-            }
-            $(el).attr("status-id", status);
-            $(el).attr("src", img);
-            $(el).attr("title", title);
-            var d = "key=ChangeStatus";
-            d += "&id=" + id;
-            d += "&status=" + status;
-            $.ajax({
-                url: "ManageClients.aspx",
-                type: "POST",
-                data: d,
-                success: function (response) {
-                }
-            });
         }
 
     </script>

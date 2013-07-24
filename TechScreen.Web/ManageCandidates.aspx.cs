@@ -127,8 +127,8 @@ namespace TechScreen.Web
                                              p.Email.Contains(search)
                                              || p.FirstName.Contains(search)
                                              || p.LastName.Contains(search)
-                                             || p.State.Contains(search)
                                              || p.City.Contains(search)
+                                             || p.State.Contains(search)
                                              || p.PhonePrimary.Contains(search)
                     );
             var orderedList = filteredList.OrderByDescending(p => p.Id);

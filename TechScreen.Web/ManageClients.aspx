@@ -281,7 +281,7 @@
             var d = "key=GetByID";
             d += "&id=" + id;
             $.ajax({
-                url: "ManageTlClients.aspx",
+                url: "ManageClients.aspx",
                 type: "POST",
                 data: d,
                 success: function (response) {

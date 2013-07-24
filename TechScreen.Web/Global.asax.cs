@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using TechScreen.Mapping;
 
 namespace TechScreen.Web
 {
@@ -13,7 +14,7 @@ namespace TechScreen.Web
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
-
+            AutoMapperConfig.InitializeMappings();
         }
 
         void Application_End(object sender, EventArgs e)

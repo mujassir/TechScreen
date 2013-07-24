@@ -382,6 +382,10 @@
       <Project>{9C58911E-D49A-4230-A9EE-B2C6C3271BA6}</Project>
       <Name>TechScreen.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TechScreen.Mapping\TechScreen.Mapping.csproj">
+      <Project>{644c3c1b-d95d-4e27-8072-ca0881e2a4c5}</Project>
+      <Name>TechScreen.Mapping</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TechScreen.Repositories\TechScreen.Repositories.csproj">
       <Project>{C595D4BF-B990-45DB-9C22-F5DD4141324C}</Project>
       <Name>TechScreen.Repositories</Name>
@@ -406,7 +410,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50996</DevelopmentServerPort>
+          <DevelopmentServerPort>22354</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

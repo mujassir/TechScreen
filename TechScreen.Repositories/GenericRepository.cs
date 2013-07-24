@@ -57,6 +57,7 @@ namespace TechScreen.Repositories
             AutoMapper.Mapper.Map(entity, dbObject);
             SaveChanges();
         }
+       
         public virtual T GetById(int id)
         {
             return ObjectSet.Where("it.Id=" + id).FirstOrDefault();

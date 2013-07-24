@@ -764,7 +764,7 @@ namespace TechScreen.Entities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Zip
+        public global::System.String Zip
         {
             get
             {
@@ -774,13 +774,13 @@ namespace TechScreen.Entities
             {
                 OnZipChanging(value);
                 ReportPropertyChanging("Zip");
-                _Zip = StructuralObject.SetValidValue(value);
+                _Zip = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Zip");
                 OnZipChanged();
             }
         }
-        private Nullable<global::System.Int32> _Zip;
-        partial void OnZipChanging(Nullable<global::System.Int32> value);
+        private global::System.String _Zip;
+        partial void OnZipChanging(global::System.String value);
         partial void OnZipChanged();
     
         /// <summary>

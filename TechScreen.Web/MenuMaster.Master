@@ -23,14 +23,12 @@
     <script type="text/javascript" src="Content/menu/menu.js"></script>
     <link href="Content/DataTable/media/css/themes/base/jquery-ui.css" rel="stylesheet" />
     <style>
-        .ui-combobox
-        {
+        .ui-combobox {
             position: relative;
             display: inline-block;
         }
 
-        .ui-combobox-toggle
-        {
+        .ui-combobox-toggle {
             position: absolute;
             top: 0;
             bottom: 0;
@@ -41,30 +39,25 @@
             *top: 0.1em;
         }
 
-        .ui-combobox-input
-        {
+        .ui-combobox-input {
             margin: 0;
             padding: 0.3em;
         }
 
-        .header-bar .title
-        {
+        .header-bar .title {
             width: 1200px;
             margin: 0 auto;
         }
 
-        .header-bar a
-        {
+        .header-bar a {
             color: #fff;
         }
 
-        .header-bar #divloggedin
-        {
+        .header-bar #divloggedin {
             float: right;
         }
 
-            .header-bar #divloggedin #client
-            {
+            .header-bar #divloggedin #client {
                 color: #EFEFEF;
                 font-size: 12px;
                 font-weight: bold;
@@ -74,114 +67,110 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="header-bar">
-        <div class="title">
-            <span class="site-title"><a href="Default.aspx">TechScreen Admin Portal</a>
-            </span>
-            <div id="divloggedin">
-                <span>
-                    <asp:DropDownList ID="ddlClients" Visible="false" runat="server" DataTextField="Client_Name"
-                        DataValueField="Id" AutoPostBack="true">
-                    </asp:DropDownList>
-                </span><span id="spUser">User :
-                    <asp:Literal ID="lblUserName" runat="server"></asp:Literal>
+        <div class="header-bar">
+            <div class="title">
+                <span class="site-title"><a href="Default.aspx">TechScreen Admin Portal</a>
                 </span>
-                <asp:HyperLink NavigateUrl="~/Logout.aspx" runat="server" ID="hypLogout" Text="Logout"></asp:HyperLink>
+                <div id="divloggedin">
+                    <span>
+                        <asp:DropDownList ID="ddlClients" Visible="false" runat="server" DataTextField="Client_Name"
+                            DataValueField="Id" AutoPostBack="true">
+                        </asp:DropDownList>
+                    </span><span id="spUser">User :
+                    <asp:Literal ID="lblUserName" runat="server"></asp:Literal>
+                    </span>
+                    <asp:HyperLink NavigateUrl="~/Logout.aspx" runat="server" ID="hypLogout" Text="Logout"></asp:HyperLink>
+                </div>
             </div>
         </div>
-    </div>
-    <p>
-    </p>
-    <br />
-    <div class="content-main">
-        <div id="menu">
-            <ul class="menu">
-                <li id="Home" style="display: none" runat="server"><a href="Default.aspx" class="parent">
-                    <span>Home</span></a> </li>
-                <li id="Admin" runat="server"><a href="javascript:void(0);" class="parent"><span>Admin</span></a>
-                    <ul>
-                        <li id="Users" runat="server"><a href="ManageUsers.aspx"><span>Users</span></a></li>
-                    </ul>
-                </li>
-                <li id="Management" runat="server"><a href="javascript:void(0);" class="parent"><span>
-                    Management</span></a>
-                    <ul>
-                        <li id="Prime_Broker_Definition" runat="server"><a href="ManageTlClients.aspx"><span>
-                            Manage Toplevel Clients</span></a></li>
-                        <li id="Holiday_Calender" runat="server"><a href="ManageClients.aspx"><span>Manage Client</span></a></li>
-                        <li id="Clients" runat="server"><a href="ManageSkills.aspx"><span>Manage Skills</span></a></li>
-                        <li id="Client_Groups" runat="server"><a href="ManageQuestions.aspx"><span>Manage Questions</span></a></li>
-                        <%-- <li id="Client_Group_Prime_Broker_Relationships" runat="server"><a href="ManageClientGroupPB.aspx"><span>Client Group Prime Broker Relationships</span></a></li>
+        <p>
+        </p>
+        <br />
+        <div class="content-main">
+            <div id="menu">
+                <ul class="menu">
+                    <li id="Home" style="display: none" runat="server"><a href="Default.aspx" class="parent">
+                        <span>Home</span></a> </li>
+                    <li id="Admin" runat="server"><a href="javascript:void(0);" class="parent"><span>Admin</span></a>
+                        <ul>
+                            <li id="Users" runat="server"><a href="ManageUsers.aspx"><span>Users</span></a></li>
+                        </ul>
+                    </li>
+                    <li id="Management" runat="server"><a href="javascript:void(0);" class="parent"><span>Management</span></a>
+                        <ul>
+                            <li id="Prime_Broker_Definition" runat="server"><a href="ManageTlClients.aspx"><span>Toplevel Clients</span></a></li>
+                            <li id="Holiday_Calender" runat="server"><a href="ManageClients.aspx"><span>Client</span></a></li>
+                            <li id="Clients" runat="server"><a href="ManageSkills.aspx"><span>Skills</span></a></li>
+                            <li id="Client_Groups" runat="server"><a href="ManageQuestions.aspx"><span>Questions</span></a></li>
+                            <li id="Li1" runat="server"><a href="ManageCandidates.aspx"><span>Candidates</span></a></li>
+                            <%-- <li id="Client_Group_Prime_Broker_Relationships" runat="server"><a href="ManageClientGroupPB.aspx"><span>Client Group Prime Broker Relationships</span></a></li>
                             <li id="Client_Prime_Broker_Relationships" runat="server"><a href="ManageClientPB.aspx"><span>Client Prime Broker Relationships</span></a></li>--%>
-                    </ul>
-                </li>
-                <li id="Accounts" style="display: none" runat="server"><a href="javascript:void(0);"
-                    class="parent"><span>Accounts</span></a>
-                    <ul>
-                        <li id="Prime_Broker_Accounts_Definition" runat="server"><a href="ManagePBA.aspx"><span>
-                            Prime Broker Accounts Definition</span></a></li>
-                        <li id="Prime_Broker_Business_Accounts_Definition" runat="server"><a href="ManageBusinessPBA.aspx">
-                            <span>Prime Broker Business Accounts Definition</span></a></li>
-                        <li id="Prime_Broker_Contra_Accounts_Definition" runat="server"><a href="ManagePbContras.aspx">
-                            <span>Prime Broker Contra Accounts Definition</span></a></li>
-                    </ul>
-                </li>
-                <li id="Traders" style="display: none" runat="server"><a href="javascript:void(0);"
-                    class="parent"><span>Traders</span></a>
-                    <ul>
-                        <li id="Trader_Definition" runat="server"><a href="ManageTraders.aspx"><span>Trader
+                        </ul>
+                    </li>
+                    <li id="Accounts" style="display: none" runat="server"><a href="javascript:void(0);"
+                        class="parent"><span>Accounts</span></a>
+                        <ul>
+                            <li id="Prime_Broker_Accounts_Definition" runat="server"><a href="ManagePBA.aspx"><span>Prime Broker Accounts Definition</span></a></li>
+                            <li id="Prime_Broker_Business_Accounts_Definition" runat="server"><a href="ManageBusinessPBA.aspx">
+                                <span>Prime Broker Business Accounts Definition</span></a></li>
+                            <li id="Prime_Broker_Contra_Accounts_Definition" runat="server"><a href="ManagePbContras.aspx">
+                                <span>Prime Broker Contra Accounts Definition</span></a></li>
+                        </ul>
+                    </li>
+                    <li id="Traders" style="display: none" runat="server"><a href="javascript:void(0);"
+                        class="parent"><span>Traders</span></a>
+                        <ul>
+                            <li id="Trader_Definition" runat="server"><a href="ManageTraders.aspx"><span>Trader
                             Definition</span></a></li>
-                        <li id="Business_Defination" runat="server"><a href="ManageBusinesses.aspx"><span>Business
+                            <li id="Business_Defination" runat="server"><a href="ManageBusinesses.aspx"><span>Business
                             Defination</span></a></li>
-                    </ul>
-                </li>
-                <li id="Trading" style="display: none" runat="server"><a href="javascript:void(0);"
-                    class="parent"><span>Trading</span></a>
-                    <ul>
-                        <li id="Trade_Defination" runat="server"><a href="ManageTradeEntries.aspx"><span>Trade
+                        </ul>
+                    </li>
+                    <li id="Trading" style="display: none" runat="server"><a href="javascript:void(0);"
+                        class="parent"><span>Trading</span></a>
+                        <ul>
+                            <li id="Trade_Defination" runat="server"><a href="ManageTradeEntries.aspx"><span>Trade
                             List</span></a></li>
-                        <li id="Trade_Entry" runat="server"><a href="TradeEntry.aspx"><span>Trade Entry</span></a></li>
-                    </ul>
-                </li>
-                <li id="Brokerage" style="display: none" runat="server"><a href="javascript:void(0);"
-                    class="parent"><span>Brokerage</span></a>
-                    <ul>
-                        <li id="Broker_Accounts_Definition" runat="server"><a href="ManageBrokers.aspx"><span>
-                            Broker Accounts Definition</span></a></li>
-                        <li id="Clearing_Firms_Definition" runat="server"><a href="ManageFirms.aspx"><span>Clearing
+                            <li id="Trade_Entry" runat="server"><a href="TradeEntry.aspx"><span>Trade Entry</span></a></li>
+                        </ul>
+                    </li>
+                    <li id="Brokerage" style="display: none" runat="server"><a href="javascript:void(0);"
+                        class="parent"><span>Brokerage</span></a>
+                        <ul>
+                            <li id="Broker_Accounts_Definition" runat="server"><a href="ManageBrokers.aspx"><span>Broker Accounts Definition</span></a></li>
+                            <li id="Clearing_Firms_Definition" runat="server"><a href="ManageFirms.aspx"><span>Clearing
                             Firms Definition</span></a></li>
-                        <li id="Executing_Broker_Definition" runat="server"><a href="ManageExecutingBrokers.aspx">
-                            <span>Executing Broker Definition</span></a></li>
-                    </ul>
-                </li>
-                <li id="Securities" style="display: none" runat="server"><a href="javascript:void(0);">
-                    <span>Securities</span></a>
-                    <ul>
-                        <li id="Security_Price_Definition" runat="server"><a href="ManageSecurityPrices.aspx">
-                            <span>Security Price Definition</span></a></li>
-                        <li id="Security_Symbol_Price_Definition" runat="server"><a href="ManageSSP.aspx"><span>
-                            Security Symbol Price Definition</span></a></li>
-                    </ul>
-                </li>
-                <li id="Profits" style="display: none" runat="server"><a href="#"><span>Profits</span></a></li>
-                <li id="Reporting" style="display: none" runat="server"><a href="#"><span>Reporting</span></a></li>
-                <li id="Help" style="display: none" runat="server"><a href="#"><span>Help</span></a></li>
-                <li id="Contacts" style="display: none" runat="server" class="last"><a href="Contact.aspx">
-                    <span>Contacts</span></a></li>
-            </ul>
-        </div>
-        <div style="clear: both">
-        </div>
-        <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
-        <div class="content-body">
-            <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                            <li id="Executing_Broker_Definition" runat="server"><a href="ManageExecutingBrokers.aspx">
+                                <span>Executing Broker Definition</span></a></li>
+                        </ul>
+                    </li>
+                    <li id="Securities" style="display: none" runat="server"><a href="javascript:void(0);">
+                        <span>Securities</span></a>
+                        <ul>
+                            <li id="Security_Price_Definition" runat="server"><a href="ManageSecurityPrices.aspx">
+                                <span>Security Price Definition</span></a></li>
+                            <li id="Security_Symbol_Price_Definition" runat="server"><a href="ManageSSP.aspx"><span>Security Symbol Price Definition</span></a></li>
+                        </ul>
+                    </li>
+                    <li id="Profits" style="display: none" runat="server"><a href="#"><span>Profits</span></a></li>
+                    <li id="Reporting" style="display: none" runat="server"><a href="#"><span>Reporting</span></a></li>
+                    <li id="Help" style="display: none" runat="server"><a href="#"><span>Help</span></a></li>
+                    <li id="Contacts" style="display: none" runat="server" class="last"><a href="Contact.aspx">
+                        <span>Contacts</span></a></li>
+                </ul>
+            </div>
             <div style="clear: both">
             </div>
+            <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+            <div class="content-body">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                <div style="clear: both">
+                </div>
+            </div>
         </div>
-    </div>
-    <br />
-    <br />
-    <footer class="footer-bar">
+        <br />
+        <br />
+        <footer class="footer-bar">
         <div class="content-wrapper">
             <div align="center">
                 <p class="footer-heading">
@@ -206,9 +195,9 @@
             //$(".chzn-select").toggle();
             $(".datepicker").datepicker();
             $("body").bind("ajaxStart", function () {
-                $(this).mask("");
+              //  $(this).mask("");
             }).bind("ajaxStop", function () {
-                $(this).unmask();
+               // $(this).unmask();
             });
             //$(".chzn-select").combobox();
             $(".chzn-select").chosen();
