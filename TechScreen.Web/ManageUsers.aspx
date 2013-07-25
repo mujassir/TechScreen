@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MenuMaster.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BootstrapMaster.Master" AutoEventWireup="true"
     CodeBehind="ManageUsers.aspx.cs" Inherits="TechScreen.Web.ManageUsers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -7,32 +7,25 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="Server">
     <p>
-        <h3>
-            Manage Users
+        <h3>Manage Users
         </h3>
     </p>
-    <table cellpadding="0" cellspacing="0" border="0" class="display" id="tblData" width="100%">
+    <table cellpadding="0" cellspacing="0" border="0" class="bordered-table zebra-striped" id="tblData" width="100%">
         <thead>
             <tr>
-                <th style='width: 20px;'>
+                <th style='width: 20px;'></th>
+                <th>User
                 </th>
-                <th>
-                    User
+                <th>Role
                 </th>
-                <th>
-                    Role
+                <th>Email
                 </th>
-                <th>
-                    Email
-                </th>
-                <th style="width: 50px;">
-                </th>
+                <th style="width: 50px;"></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td colspan="4">
-                    Proccessing
+                <td colspan="4">Proccessing
                 </td>
             </tr>
         </tbody>
@@ -46,40 +39,35 @@
                 </td>
             </tr>
             <tr>
-                <td>
-                    Username
+                <td>Username
                 </td>
                 <td>
                     <input id='txtUserName' type="text" class="txtsmall" />
                 </td>
             </tr>
             <tr>
-                <td>
-                    Email
+                <td>Email
                 </td>
                 <td>
                     <input id='txtEmail' type="text" class="txtsmall" />
                 </td>
             </tr>
             <tr>
-                <td>
-                    Password
+                <td>Password
                 </td>
                 <td>
                     <input id='txtPassword' type="password" class="txtsmall" />
                 </td>
             </tr>
             <tr>
-                <td>
-                    Role
+                <td>Role
                 </td>
                 <td>
                     <select id='txtRole' class="txtsmall">
                         <asp:Repeater ID="rptRoles" runat="server">
                             <ItemTemplate>
-                                <option 
-                                value='<%#DataBinder.Eval(Container.DataItem , "Id") %>'
-                                ><%#DataBinder.Eval(Container.DataItem , "Name") %></option>
+                                <option
+                                    value='<%#DataBinder.Eval(Container.DataItem , "Id") %>'><%#DataBinder.Eval(Container.DataItem , "Name") %></option>
                             </ItemTemplate>
                         </asp:Repeater>
                     </select>
@@ -87,6 +75,8 @@
             </tr>
         </table>
     </div>
+
+    
     <script type="text/javascript">
         function HideMessage() {
 
@@ -98,11 +88,23 @@
 
         }
 
+       
+
 
         $(document).ready(function () {
+            //$('#example').dataTable({
+            //    "sDom": "<'row'<'span8'l><'span8'f>r>t<'row'<'span8'i><'span8'p>>",
+            //    "sPaginationType": "bootstrap",
+            //    "oLanguage": {
+            //        "sLengthMenu": "_MENU_ records per page"
+            //    }
+            //});
             oTable = $('#tblData').dataTable({
-                bJQueryUI: true,
-                "sPaginationType": "full_numbers",
+                //bJQueryUI: true,
+                "sDom": "<'row'<'span8'l><'span8'f>r>t<'row'<'span8'i><'span8'p>>",
+                "sPaginationType": "bootstrap",
+                "iDisplayLength": 25,
+                //"sPaginationType": "full_numbers",
                 "bProcessing": true,
                 "bServerSide": true,
                 "sAjaxSource": "ManageUsers.aspx?key=GetDataTable",
@@ -158,7 +160,7 @@
                 Email: $("#txtEmail").val(),
                 Password: $("#txtPassword").val(),
                 RoleId: $("#txtRole").val(),
-                RoleName: $("#txtRole option:selected").text()
+                RoleName: $("#txtRole option:selected").text().trim()
             };
             var d = "Key=Save";
             d += "&user=" + JSON.stringify(user);

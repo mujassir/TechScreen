@@ -23,8 +23,10 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("TechScreenModel", "FK_Screening_candidateID", "Candidate", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TechScreen.Entities.Candidate), "Screening", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TechScreen.Entities.Screening), true)]
 [assembly: EdmRelationshipAttribute("TechScreenModel", "FK_Client_toplevelclientID", "TopLevelClient", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TechScreen.Entities.TopLevelClient), "Client", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TechScreen.Entities.Client), true)]
 [assembly: EdmRelationshipAttribute("TechScreenModel", "FK_Position_primarySkillID", "Skill", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TechScreen.Entities.Skill), "Position", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TechScreen.Entities.Position), true)]
-[assembly: EdmRelationshipAttribute("TechScreenModel", "FK_Position_SecondarySkillID", "Skill", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TechScreen.Entities.Skill), "Position", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TechScreen.Entities.Position), true)]
+[assembly: EdmRelationshipAttribute("TechScreenModel", "FK_Position_Recruiter", "Recruiter", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TechScreen.Entities.Recruiter), "Position", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TechScreen.Entities.Position), true)]
+[assembly: EdmRelationshipAttribute("TechScreenModel", "FK_PositionSkills_Position", "Position", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TechScreen.Entities.Position), "PositionSkill", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TechScreen.Entities.PositionSkill), true)]
 [assembly: EdmRelationshipAttribute("TechScreenModel", "FK_Screening_positionID", "Position", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TechScreen.Entities.Position), "Screening", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TechScreen.Entities.Screening), true)]
+[assembly: EdmRelationshipAttribute("TechScreenModel", "FK_PositionSkills_Skill", "Skill", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TechScreen.Entities.Skill), "PositionSkill", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TechScreen.Entities.PositionSkill), true)]
 [assembly: EdmRelationshipAttribute("TechScreenModel", "FK_Question_skillID", "Skill", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TechScreen.Entities.Skill), "Question", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TechScreen.Entities.Question), true)]
 [assembly: EdmRelationshipAttribute("TechScreenModel", "FK_ScreeningQA_questionID", "Question", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TechScreen.Entities.Question), "ScreeningQA", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TechScreen.Entities.ScreeningQA), true)]
 [assembly: EdmRelationshipAttribute("TechScreenModel", "FK_Recruiter_toplevelclientID", "TopLevelClient", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TechScreen.Entities.TopLevelClient), "Recruiter", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TechScreen.Entities.Recruiter), true)]
@@ -147,6 +149,22 @@ namespace TechScreen.Entities
             }
         }
         private ObjectSet<Position> _Positions;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<PositionSkill> PositionSkills
+        {
+            get
+            {
+                if ((_PositionSkills == null))
+                {
+                    _PositionSkills = base.CreateObjectSet<PositionSkill>("PositionSkills");
+                }
+                return _PositionSkills;
+            }
+        }
+        private ObjectSet<PositionSkill> _PositionSkills;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -358,6 +376,14 @@ namespace TechScreen.Entities
         public void AddToPositions(Position position)
         {
             base.AddObject("Positions", position);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the PositionSkills EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPositionSkills(PositionSkill positionSkill)
+        {
+            base.AddObject("PositionSkills", positionSkill);
         }
     
         /// <summary>
@@ -1311,10 +1337,12 @@ namespace TechScreen.Entities
         /// Create a new Position object.
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
-        public static Position CreatePosition(global::System.Int32 id)
+        /// <param name="recordStatus">Initial value of the RecordStatus property.</param>
+        public static Position CreatePosition(global::System.Int32 id, global::System.Byte recordStatus)
         {
             Position position = new Position();
             position.Id = id;
+            position.RecordStatus = recordStatus;
             return position;
         }
 
@@ -1396,30 +1424,6 @@ namespace TechScreen.Entities
         private Nullable<global::System.Int32> _PrimarySkillId;
         partial void OnPrimarySkillIdChanging(Nullable<global::System.Int32> value);
         partial void OnPrimarySkillIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SecondarySkillId
-        {
-            get
-            {
-                return _SecondarySkillId;
-            }
-            set
-            {
-                OnSecondarySkillIdChanging(value);
-                ReportPropertyChanging("SecondarySkillId");
-                _SecondarySkillId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SecondarySkillId");
-                OnSecondarySkillIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _SecondarySkillId;
-        partial void OnSecondarySkillIdChanging(Nullable<global::System.Int32> value);
-        partial void OnSecondarySkillIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1522,24 +1526,72 @@ namespace TechScreen.Entities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> SecondarySkillLevel
+        public global::System.String RecruiterName
         {
             get
             {
-                return _SecondarySkillLevel;
+                return _RecruiterName;
             }
             set
             {
-                OnSecondarySkillLevelChanging(value);
-                ReportPropertyChanging("SecondarySkillLevel");
-                _SecondarySkillLevel = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SecondarySkillLevel");
-                OnSecondarySkillLevelChanged();
+                OnRecruiterNameChanging(value);
+                ReportPropertyChanging("RecruiterName");
+                _RecruiterName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("RecruiterName");
+                OnRecruiterNameChanged();
             }
         }
-        private Nullable<global::System.Int32> _SecondarySkillLevel;
-        partial void OnSecondarySkillLevelChanging(Nullable<global::System.Int32> value);
-        partial void OnSecondarySkillLevelChanged();
+        private global::System.String _RecruiterName;
+        partial void OnRecruiterNameChanging(global::System.String value);
+        partial void OnRecruiterNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PrimarySkillName
+        {
+            get
+            {
+                return _PrimarySkillName;
+            }
+            set
+            {
+                OnPrimarySkillNameChanging(value);
+                ReportPropertyChanging("PrimarySkillName");
+                _PrimarySkillName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PrimarySkillName");
+                OnPrimarySkillNameChanged();
+            }
+        }
+        private global::System.String _PrimarySkillName;
+        partial void OnPrimarySkillNameChanging(global::System.String value);
+        partial void OnPrimarySkillNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte RecordStatus
+        {
+            get
+            {
+                return _RecordStatus;
+            }
+            set
+            {
+                OnRecordStatusChanging(value);
+                ReportPropertyChanging("RecordStatus");
+                _RecordStatus = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RecordStatus");
+                OnRecordStatusChanged();
+            }
+        }
+        private global::System.Byte _RecordStatus;
+        partial void OnRecordStatusChanging(global::System.Byte value);
+        partial void OnRecordStatusChanged();
 
         #endregion
 
@@ -1590,16 +1642,16 @@ namespace TechScreen.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TechScreenModel", "FK_Position_SecondarySkillID", "Skill")]
-        public Skill Skill1
+        [EdmRelationshipNavigationPropertyAttribute("TechScreenModel", "FK_Position_Recruiter", "Recruiter")]
+        public Recruiter Recruiter
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Skill>("TechScreenModel.FK_Position_SecondarySkillID", "Skill").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Recruiter>("TechScreenModel.FK_Position_Recruiter", "Recruiter").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Skill>("TechScreenModel.FK_Position_SecondarySkillID", "Skill").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Recruiter>("TechScreenModel.FK_Position_Recruiter", "Recruiter").Value = value;
             }
         }
         /// <summary>
@@ -1607,17 +1659,39 @@ namespace TechScreen.Entities
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Skill> Skill1Reference
+        public EntityReference<Recruiter> RecruiterReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Skill>("TechScreenModel.FK_Position_SecondarySkillID", "Skill");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Recruiter>("TechScreenModel.FK_Position_Recruiter", "Recruiter");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Skill>("TechScreenModel.FK_Position_SecondarySkillID", "Skill", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Recruiter>("TechScreenModel.FK_Position_Recruiter", "Recruiter", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TechScreenModel", "FK_PositionSkills_Position", "PositionSkill")]
+        public EntityCollection<PositionSkill> PositionSkills
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PositionSkill>("TechScreenModel.FK_PositionSkills_Position", "PositionSkill");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PositionSkill>("TechScreenModel.FK_PositionSkills_Position", "PositionSkill", value);
                 }
             }
         }
@@ -1640,6 +1714,195 @@ namespace TechScreen.Entities
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Screening>("TechScreenModel.FK_Screening_positionID", "Screening", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TechScreenModel", Name="PositionSkill")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class PositionSkill : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new PositionSkill object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="positionId">Initial value of the PositionId property.</param>
+        /// <param name="skillId">Initial value of the SkillId property.</param>
+        public static PositionSkill CreatePositionSkill(global::System.Int32 id, global::System.Int32 positionId, global::System.Int32 skillId)
+        {
+            PositionSkill positionSkill = new PositionSkill();
+            positionSkill.Id = id;
+            positionSkill.PositionId = positionId;
+            positionSkill.SkillId = skillId;
+            return positionSkill;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PositionId
+        {
+            get
+            {
+                return _PositionId;
+            }
+            set
+            {
+                OnPositionIdChanging(value);
+                ReportPropertyChanging("PositionId");
+                _PositionId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PositionId");
+                OnPositionIdChanged();
+            }
+        }
+        private global::System.Int32 _PositionId;
+        partial void OnPositionIdChanging(global::System.Int32 value);
+        partial void OnPositionIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SkillId
+        {
+            get
+            {
+                return _SkillId;
+            }
+            set
+            {
+                OnSkillIdChanging(value);
+                ReportPropertyChanging("SkillId");
+                _SkillId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SkillId");
+                OnSkillIdChanged();
+            }
+        }
+        private global::System.Int32 _SkillId;
+        partial void OnSkillIdChanging(global::System.Int32 value);
+        partial void OnSkillIdChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TechScreenModel", "FK_PositionSkills_Position", "Position")]
+        public Position Position
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Position>("TechScreenModel.FK_PositionSkills_Position", "Position").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Position>("TechScreenModel.FK_PositionSkills_Position", "Position").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Position> PositionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Position>("TechScreenModel.FK_PositionSkills_Position", "Position");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Position>("TechScreenModel.FK_PositionSkills_Position", "Position", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TechScreenModel", "FK_PositionSkills_Skill", "Skill")]
+        public Skill Skill
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Skill>("TechScreenModel.FK_PositionSkills_Skill", "Skill").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Skill>("TechScreenModel.FK_PositionSkills_Skill", "Skill").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Skill> SkillReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Skill>("TechScreenModel.FK_PositionSkills_Skill", "Skill");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Skill>("TechScreenModel.FK_PositionSkills_Skill", "Skill", value);
                 }
             }
         }
@@ -1970,6 +2233,30 @@ namespace TechScreen.Entities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String TopLevelClientName
+        {
+            get
+            {
+                return _TopLevelClientName;
+            }
+            set
+            {
+                OnTopLevelClientNameChanging(value);
+                ReportPropertyChanging("TopLevelClientName");
+                _TopLevelClientName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TopLevelClientName");
+                OnTopLevelClientNameChanged();
+            }
+        }
+        private global::System.String _TopLevelClientName;
+        partial void OnTopLevelClientNameChanging(global::System.String value);
+        partial void OnTopLevelClientNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String FirstName
         {
             get
@@ -2089,6 +2376,28 @@ namespace TechScreen.Entities
 
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TechScreenModel", "FK_Position_Recruiter", "Position")]
+        public EntityCollection<Position> Positions
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Position>("TechScreenModel.FK_Position_Recruiter", "Position");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Position>("TechScreenModel.FK_Position_Recruiter", "Position", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2414,7 +2723,7 @@ namespace TechScreen.Entities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Zip
+        public global::System.String Zip
         {
             get
             {
@@ -2424,13 +2733,13 @@ namespace TechScreen.Entities
             {
                 OnZipChanging(value);
                 ReportPropertyChanging("Zip");
-                _Zip = StructuralObject.SetValidValue(value);
+                _Zip = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Zip");
                 OnZipChanged();
             }
         }
-        private Nullable<global::System.Int32> _Zip;
-        partial void OnZipChanging(Nullable<global::System.Int32> value);
+        private global::System.String _Zip;
+        partial void OnZipChanging(global::System.String value);
         partial void OnZipChanged();
     
         /// <summary>
@@ -3705,18 +4014,18 @@ namespace TechScreen.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TechScreenModel", "FK_Position_SecondarySkillID", "Position")]
-        public EntityCollection<Position> Positions1
+        [EdmRelationshipNavigationPropertyAttribute("TechScreenModel", "FK_PositionSkills_Skill", "PositionSkill")]
+        public EntityCollection<PositionSkill> PositionSkills
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Position>("TechScreenModel.FK_Position_SecondarySkillID", "Position");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PositionSkill>("TechScreenModel.FK_PositionSkills_Skill", "PositionSkill");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Position>("TechScreenModel.FK_Position_SecondarySkillID", "Position", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PositionSkill>("TechScreenModel.FK_PositionSkills_Skill", "PositionSkill", value);
                 }
             }
         }

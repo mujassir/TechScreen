@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TechScreenModelStoreContainer" CdmEntityContainer="TechScreenEntities">
+    <EntitySetMapping Name="AnswerStatus">
+      <EntityTypeMapping TypeName="TechScreenModel.AnswerStatu">
+        <MappingFragment StoreEntitySet="AnswerStatus">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Candidates">
+      <EntityTypeMapping TypeName="TechScreenModel.Candidate">
+        <MappingFragment StoreEntitySet="Candidate">
+          <ScalarProperty Name="PhoneSecondary" ColumnName="PhoneSecondary" />
+          <ScalarProperty Name="PhonePrimary" ColumnName="PhonePrimary" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="TechScreenModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="PhoneSecondary" ColumnName="PhoneSecondary" />
+          <ScalarProperty Name="PhonePrimary" ColumnName="PhonePrimary" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+          <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TopLevelClientName" ColumnName="TopLevelClientName" />
+          <ScalarProperty Name="TopLevelClientId" ColumnName="TopLevelClientId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="TechScreenModel.Position">
+        <MappingFragment StoreEntitySet="Position">
+          <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+          <ScalarProperty Name="PrimarySkillName" ColumnName="PrimarySkillName" />
+          <ScalarProperty Name="RecruiterName" ColumnName="RecruiterName" />
+          <ScalarProperty Name="PrimarySkillLevel" ColumnName="PrimarySkillLevel" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ReqNumber" ColumnName="ReqNumber" />
+          <ScalarProperty Name="PrimarySkillId" ColumnName="PrimarySkillId" />
+          <ScalarProperty Name="RecruiterId" ColumnName="RecruiterId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PositionSkills">
+      <EntityTypeMapping TypeName="TechScreenModel.PositionSkill">
+        <MappingFragment StoreEntitySet="PositionSkills">
+          <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="TechScreenModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="Skilllevel" ColumnName="Skilllevel" />
+          <ScalarProperty Name="SkillLevelName" ColumnName="SkillLevelName" />
+          <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+          <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+          <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recruiters">
+      <EntityTypeMapping TypeName="TechScreenModel.Recruiter">
+        <MappingFragment StoreEntitySet="Recruiter">
+          <ScalarProperty Name="PhoneSecondary" ColumnName="PhoneSecondary" />
+          <ScalarProperty Name="PhonePrimary" ColumnName="PhonePrimary" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="TopLevelClientName" ColumnName="TopLevelClientName" />
+          <ScalarProperty Name="TopLevelClientId" ColumnName="TopLevelClientId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="TechScreenModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Screeners">
+      <EntityTypeMapping TypeName="TechScreenModel.Screener">
+        <MappingFragment StoreEntitySet="Screener">
+          <ScalarProperty Name="PhoneSecondary" ColumnName="PhoneSecondary" />
+          <ScalarProperty Name="PhonePrimary" ColumnName="PhonePrimary" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScreenerSkillxRefs">
+      <EntityTypeMapping TypeName="TechScreenModel.ScreenerSkillxRef">
+        <MappingFragment StoreEntitySet="ScreenerSkillxRef">
+          <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+          <ScalarProperty Name="ScreenerId" ColumnName="ScreenerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Screenings">
+      <EntityTypeMapping TypeName="TechScreenModel.Screening">
+        <MappingFragment StoreEntitySet="Screening">
+          <ScalarProperty Name="ScreenerComments" ColumnName="ScreenerComments" />
+          <ScalarProperty Name="IsRecommended" ColumnName="IsRecommended" />
+          <ScalarProperty Name="ScreeningStatusId" ColumnName="ScreeningStatusId" />
+          <ScalarProperty Name="SpecialInstructions" ColumnName="SpecialInstructions" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="ScreenerId" ColumnName="ScreenerId" />
+          <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+          <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScreeningQAs">
+      <EntityTypeMapping TypeName="TechScreenModel.ScreeningQA">
+        <MappingFragment StoreEntitySet="ScreeningQA">
+          <ScalarProperty Name="ScreenerNotes" ColumnName="ScreenerNotes" />
+          <ScalarProperty Name="AnswerStatusId" ColumnName="AnswerStatusId" />
+          <ScalarProperty Name="CandidateId" ColumnName="CandidateId" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="ScreeningId" ColumnName="ScreeningId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScreeningStatus">
+      <EntityTypeMapping TypeName="TechScreenModel.ScreeningStatu">
+        <MappingFragment StoreEntitySet="ScreeningStatus">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Skills">
+      <EntityTypeMapping TypeName="TechScreenModel.Skill">
+        <MappingFragment StoreEntitySet="Skill">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TopLevelClients">
+      <EntityTypeMapping TypeName="TechScreenModel.TopLevelClient">
+        <MappingFragment StoreEntitySet="TopLevelClient">
+          <ScalarProperty Name="PhoneSecondary" ColumnName="PhoneSecondary" />
+          <ScalarProperty Name="PhonePrimary" ColumnName="PhonePrimary" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+          <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+          <ScalarProperty Name="Zip" ColumnName="Zip" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="TechScreenModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

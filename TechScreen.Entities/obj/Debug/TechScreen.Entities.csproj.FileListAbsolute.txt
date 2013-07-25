@@ -1,0 +1,5 @@
+D:\Projects\Git\TechScreen\TechScreen.Entities\bin\Debug\TechScreen.Entities.dll.config
+D:\Projects\Git\TechScreen\TechScreen.Entities\bin\Debug\TechScreen.Entities.dll
+D:\Projects\Git\TechScreen\TechScreen.Entities\bin\Debug\TechScreen.Entities.pdb
+D:\Projects\Git\TechScreen\TechScreen.Entities\obj\Debug\TechScreen.Entities.dll
+D:\Projects\Git\TechScreen\TechScreen.Entities\obj\Debug\TechScreen.Entities.pdb

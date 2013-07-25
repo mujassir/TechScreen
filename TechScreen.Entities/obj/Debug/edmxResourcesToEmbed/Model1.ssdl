@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TechScreenModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="TechScreenModelStoreContainer">
+    <EntitySet Name="AnswerStatus" EntityType="TechScreenModel.Store.AnswerStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Candidate" EntityType="TechScreenModel.Store.Candidate" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Client" EntityType="TechScreenModel.Store.Client" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Position" EntityType="TechScreenModel.Store.Position" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PositionSkills" EntityType="TechScreenModel.Store.PositionSkills" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Question" EntityType="TechScreenModel.Store.Question" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Recruiter" EntityType="TechScreenModel.Store.Recruiter" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Roles" EntityType="TechScreenModel.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Screener" EntityType="TechScreenModel.Store.Screener" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ScreenerSkillxRef" EntityType="TechScreenModel.Store.ScreenerSkillxRef" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Screening" EntityType="TechScreenModel.Store.Screening" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ScreeningQA" EntityType="TechScreenModel.Store.ScreeningQA" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ScreeningStatus" EntityType="TechScreenModel.Store.ScreeningStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Skill" EntityType="TechScreenModel.Store.Skill" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TopLevelClient" EntityType="TechScreenModel.Store.TopLevelClient" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="TechScreenModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Client_toplevelclientID" Association="TechScreenModel.Store.FK_Client_toplevelclientID">
+      <End Role="TopLevelClient" EntitySet="TopLevelClient" />
+      <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Position_primarySkillID" Association="TechScreenModel.Store.FK_Position_primarySkillID">
+      <End Role="Skill" EntitySet="Skill" />
+      <End Role="Position" EntitySet="Position" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Position_Recruiter" Association="TechScreenModel.Store.FK_Position_Recruiter">
+      <End Role="Recruiter" EntitySet="Recruiter" />
+      <End Role="Position" EntitySet="Position" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PositionSkills_Position" Association="TechScreenModel.Store.FK_PositionSkills_Position">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="PositionSkills" EntitySet="PositionSkills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PositionSkills_Skill" Association="TechScreenModel.Store.FK_PositionSkills_Skill">
+      <End Role="Skill" EntitySet="Skill" />
+      <End Role="PositionSkills" EntitySet="PositionSkills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Question_skillID" Association="TechScreenModel.Store.FK_Question_skillID">
+      <End Role="Skill" EntitySet="Skill" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recruiter_toplevelclientID" Association="TechScreenModel.Store.FK_Recruiter_toplevelclientID">
+      <End Role="TopLevelClient" EntitySet="TopLevelClient" />
+      <End Role="Recruiter" EntitySet="Recruiter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScreenerSkillxRef_screenerID" Association="TechScreenModel.Store.FK_ScreenerSkillxRef_screenerID">
+      <End Role="Screener" EntitySet="Screener" />
+      <End Role="ScreenerSkillxRef" EntitySet="ScreenerSkillxRef" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScreenerSkillxRef_skillID" Association="TechScreenModel.Store.FK_ScreenerSkillxRef_skillID">
+      <End Role="Skill" EntitySet="Skill" />
+      <End Role="ScreenerSkillxRef" EntitySet="ScreenerSkillxRef" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Screening_candidateID" Association="TechScreenModel.Store.FK_Screening_candidateID">
+      <End Role="Candidate" EntitySet="Candidate" />
+      <End Role="Screening" EntitySet="Screening" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Screening_positionID" Association="TechScreenModel.Store.FK_Screening_positionID">
+      <End Role="Position" EntitySet="Position" />
+      <End Role="Screening" EntitySet="Screening" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Screening_screenerID" Association="TechScreenModel.Store.FK_Screening_screenerID">
+      <End Role="Screener" EntitySet="Screener" />
+      <End Role="Screening" EntitySet="Screening" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Screening_ScreeningStatusID" Association="TechScreenModel.Store.FK_Screening_ScreeningStatusID">
+      <End Role="ScreeningStatus" EntitySet="ScreeningStatus" />
+      <End Role="Screening" EntitySet="Screening" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScreeningQA_answerStatusID" Association="TechScreenModel.Store.FK_ScreeningQA_answerStatusID">
+      <End Role="AnswerStatus" EntitySet="AnswerStatus" />
+      <End Role="ScreeningQA" EntitySet="ScreeningQA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScreeningQA_questionID" Association="TechScreenModel.Store.FK_ScreeningQA_questionID">
+      <End Role="Question" EntitySet="Question" />
+      <End Role="ScreeningQA" EntitySet="ScreeningQA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScreeningQA_screeningID" Association="TechScreenModel.Store.FK_ScreeningQA_screeningID">
+      <End Role="Screening" EntitySet="Screening" />
+      <End Role="ScreeningQA" EntitySet="ScreeningQA" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AnswerStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="Candidate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="Address1" Type="varchar" MaxLength="50" />
+    <Property Name="Address2" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Zip" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="PhonePrimary" Type="varchar" MaxLength="50" />
+    <Property Name="PhoneSecondary" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TopLevelClientId" Type="int" />
+    <Property Name="TopLevelClientName" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Address1" Type="varchar" MaxLength="50" />
+    <Property Name="Address2" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Zip" Type="varchar" MaxLength="50" />
+    <Property Name="ContactFirstName" Type="varchar" MaxLength="50" />
+    <Property Name="ContactLastName" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="PhonePrimary" Type="varchar" MaxLength="10" />
+    <Property Name="PhoneSecondary" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RecruiterId" Type="int" />
+    <Property Name="PrimarySkillId" Type="int" />
+    <Property Name="ReqNumber" Type="varchar" MaxLength="100" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar" MaxLength="1000" />
+    <Property Name="PrimarySkillLevel" Type="int" />
+    <Property Name="RecruiterName" Type="varchar" MaxLength="50" />
+    <Property Name="PrimarySkillName" Type="varchar" MaxLength="50" />
+    <Property Name="RecordStatus" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PositionSkills">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PositionId" Type="int" Nullable="false" />
+    <Property Name="SkillId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SkillId" Type="int" />
+    <Property Name="SkillName" Type="varchar" MaxLength="50" />
+    <Property Name="QuestionText" Type="varchar" MaxLength="500" />
+    <Property Name="SkillLevelName" Type="varchar" MaxLength="50" />
+    <Property Name="Skilllevel" Type="int" />
+  </EntityType>
+  <EntityType Name="Recruiter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="TopLevelClientId" Type="int" />
+    <Property Name="TopLevelClientName" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="PhonePrimary" Type="varchar" MaxLength="50" />
+    <Property Name="PhoneSecondary" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Screener">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="Address1" Type="varchar" MaxLength="50" />
+    <Property Name="Address2" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Zip" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="PhonePrimary" Type="varchar" MaxLength="50" />
+    <Property Name="PhoneSecondary" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ScreenerSkillxRef">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ScreenerId" Type="int" />
+    <Property Name="SkillId" Type="int" />
+  </EntityType>
+  <EntityType Name="Screening">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CandidateId" Type="int" />
+    <Property Name="PositionId" Type="int" />
+    <Property Name="ScreenerId" Type="int" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="SpecialInstructions" Type="varchar" MaxLength="1000" />
+    <Property Name="ScreeningStatusId" Type="int" />
+    <Property Name="IsRecommended" Type="bit" />
+    <Property Name="ScreenerComments" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="ScreeningQA">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ScreeningId" Type="int" />
+    <Property Name="QuestionId" Type="int" />
+    <Property Name="CandidateId" Type="int" />
+    <Property Name="AnswerStatusId" Type="int" />
+    <Property Name="ScreenerNotes" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="ScreeningStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="Skill">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TopLevelClient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Address1" Type="varchar" MaxLength="50" />
+    <Property Name="Address2" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="Zip" Type="varchar" MaxLength="50" />
+    <Property Name="ContactFirstName" Type="varchar" MaxLength="50" />
+    <Property Name="ContactLastName" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="PhonePrimary" Type="varchar" MaxLength="10" />
+    <Property Name="PhoneSecondary" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="RoleName" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="RecordStatus" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Client_toplevelclientID">
+    <End Role="TopLevelClient" Type="TechScreenModel.Store.TopLevelClient" Multiplicity="0..1" />
+    <End Role="Client" Type="TechScreenModel.Store.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TopLevelClient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="TopLevelClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Position_primarySkillID">
+    <End Role="Skill" Type="TechScreenModel.Store.Skill" Multiplicity="0..1" />
+    <End Role="Position" Type="TechScreenModel.Store.Position" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Position">
+        <PropertyRef Name="PrimarySkillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Position_Recruiter">
+    <End Role="Recruiter" Type="TechScreenModel.Store.Recruiter" Multiplicity="0..1" />
+    <End Role="Position" Type="TechScreenModel.Store.Position" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recruiter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Position">
+        <PropertyRef Name="RecruiterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PositionSkills_Position">
+    <End Role="Position" Type="TechScreenModel.Store.Position" Multiplicity="1" />
+    <End Role="PositionSkills" Type="TechScreenModel.Store.PositionSkills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PositionSkills">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PositionSkills_Skill">
+    <End Role="Skill" Type="TechScreenModel.Store.Skill" Multiplicity="1" />
+    <End Role="PositionSkills" Type="TechScreenModel.Store.PositionSkills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PositionSkills">
+        <PropertyRef Name="SkillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Question_skillID">
+    <End Role="Skill" Type="TechScreenModel.Store.Skill" Multiplicity="0..1" />
+    <End Role="Question" Type="TechScreenModel.Store.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="SkillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recruiter_toplevelclientID">
+    <End Role="TopLevelClient" Type="TechScreenModel.Store.TopLevelClient" Multiplicity="0..1" />
+    <End Role="Recruiter" Type="TechScreenModel.Store.Recruiter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TopLevelClient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Recruiter">
+        <PropertyRef Name="TopLevelClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScreenerSkillxRef_screenerID">
+    <End Role="Screener" Type="TechScreenModel.Store.Screener" Multiplicity="0..1" />
+    <End Role="ScreenerSkillxRef" Type="TechScreenModel.Store.ScreenerSkillxRef" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Screener">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScreenerSkillxRef">
+        <PropertyRef Name="ScreenerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScreenerSkillxRef_skillID">
+    <End Role="Skill" Type="TechScreenModel.Store.Skill" Multiplicity="0..1" />
+    <End Role="ScreenerSkillxRef" Type="TechScreenModel.Store.ScreenerSkillxRef" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Skill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScreenerSkillxRef">
+        <PropertyRef Name="SkillId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Screening_candidateID">
+    <End Role="Candidate" Type="TechScreenModel.Store.Candidate" Multiplicity="0..1" />
+    <End Role="Screening" Type="TechScreenModel.Store.Screening" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Candidate">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Screening">
+        <PropertyRef Name="CandidateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Screening_positionID">
+    <End Role="Position" Type="TechScreenModel.Store.Position" Multiplicity="0..1" />
+    <End Role="Screening" Type="TechScreenModel.Store.Screening" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Position">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Screening">
+        <PropertyRef Name="PositionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Screening_screenerID">
+    <End Role="Screener" Type="TechScreenModel.Store.Screener" Multiplicity="0..1" />
+    <End Role="Screening" Type="TechScreenModel.Store.Screening" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Screener">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Screening">
+        <PropertyRef Name="ScreenerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Screening_ScreeningStatusID">
+    <End Role="ScreeningStatus" Type="TechScreenModel.Store.ScreeningStatus" Multiplicity="0..1" />
+    <End Role="Screening" Type="TechScreenModel.Store.Screening" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScreeningStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Screening">
+        <PropertyRef Name="ScreeningStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScreeningQA_answerStatusID">
+    <End Role="AnswerStatus" Type="TechScreenModel.Store.AnswerStatus" Multiplicity="0..1" />
+    <End Role="ScreeningQA" Type="TechScreenModel.Store.ScreeningQA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnswerStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScreeningQA">
+        <PropertyRef Name="AnswerStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScreeningQA_questionID">
+    <End Role="Question" Type="TechScreenModel.Store.Question" Multiplicity="0..1" />
+    <End Role="ScreeningQA" Type="TechScreenModel.Store.ScreeningQA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScreeningQA">
+        <PropertyRef Name="QuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScreeningQA_screeningID">
+    <End Role="Screening" Type="TechScreenModel.Store.Screening" Multiplicity="0..1" />
+    <End Role="ScreeningQA" Type="TechScreenModel.Store.ScreeningQA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Screening">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ScreeningQA">
+        <PropertyRef Name="ScreeningId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -89,12 +89,15 @@
     <Content Include="Content\bootstrap\img\twitter-login.png" />
     <Content Include="Content\bootstrap\js\bootstrap.js" />
     <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\bootstrap\js\paging.js" />
     <Content Include="Content\chosen\chosen-sprite.png" />
     <Content Include="Content\chosen\chosen.css" />
     <Content Include="Content\chosen\chosen.jquery.js" />
     <Content Include="Content\chosen\chosen.jquery.min.js" />
     <Content Include="Content\chosen\chosen.proto.js" />
     <Content Include="Content\chosen\chosen.proto.min.js" />
+    <Content Include="Content\DataTable\jquery.dataTables.custom.js" />
+    <Content Include="Content\DataTable\jquery.dataTables.min.js" />
     <Content Include="Content\loadmask\demo\example.html" />
     <Content Include="Content\loadmask\images\loading.gif" />
     <Content Include="Content\loadmask\images\_loading.gif" />
@@ -198,7 +201,10 @@
     <Content Include="Logout.aspx" />
     <Content Include="ManageCandidates.aspx" />
     <Content Include="ManageClients.aspx" />
+    <Content Include="ManagePositions.aspx" />
     <Content Include="ManageQuestions.aspx" />
+    <Content Include="ManageRecruiter.aspx" />
+    <Content Include="ManageScreener.aspx" />
     <Content Include="ManageSkills.aspx" />
     <Content Include="ManageTlClients.aspx" />
     <Content Include="ManageUsers.aspx" />
@@ -281,6 +287,13 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BootstrapMaster.Master.cs">
+      <DependentUpon>BootstrapMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BootstrapMaster.Master.designer.cs">
+      <DependentUpon>BootstrapMaster.Master</DependentUpon>
+    </Compile>
     <Compile Include="Code\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -322,12 +335,33 @@
     <Compile Include="ManageClients.aspx.designer.cs">
       <DependentUpon>ManageClients.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ManagePositions.aspx.cs">
+      <DependentUpon>ManagePositions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagePositions.aspx.designer.cs">
+      <DependentUpon>ManagePositions.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ManageQuestions.aspx.cs">
       <DependentUpon>ManageQuestions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ManageQuestions.aspx.designer.cs">
       <DependentUpon>ManageQuestions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageRecruiter.aspx.cs">
+      <DependentUpon>ManageRecruiter.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageRecruiter.aspx.designer.cs">
+      <DependentUpon>ManageRecruiter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageScreener.aspx.cs">
+      <DependentUpon>ManageScreener.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageScreener.aspx.designer.cs">
+      <DependentUpon>ManageScreener.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageSkills.aspx.cs">
       <DependentUpon>ManageSkills.aspx</DependentUpon>
@@ -395,6 +429,7 @@
     <Content Include="MenuMaster.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BootstrapMaster.Master" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
   </ItemGroup>
   <PropertyGroup>

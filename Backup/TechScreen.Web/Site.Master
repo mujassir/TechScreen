@@ -1,0 +1,86 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="TechScreen.Web.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    
+    <link href="DataTable/media/css/demo_table_jui.css" rel="stylesheet" type="text/css" />
+    <link href="DataTable/media/css/themes/smoothness/jquery-ui-1.7.2.custom.css" rel="stylesheet"
+        type="text/css" />
+    <link href="Content/Site.css" rel="stylesheet" />
+    <link href="Content/Style.css" rel="stylesheet" />
+    <link href="DataTable/media/css/themes/base/jquery-ui.css" rel="stylesheet" />
+
+    <script src="DataTable/media/js/jquery-ui.js" type="text/javascript"></script>
+    <script src="DataTable/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="DataTable/media/js/jquery.dataTables.custom.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-1.7.1.js"></script>
+    <script src="Scripts/Utility.js"></script>
+
+    <style type="text/css">
+       
+        
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".datepicker").datepicker();
+        });
+    </script>
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+
+</head>
+<body>
+    <form id="form1" runat="server">
+   <%--  <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>--%>
+
+        <div class="header-bar">
+            <div style="width: 50%;" align="center">
+                <span class="site-title">
+                    <a href="../Default.aspx">TechScreen Admin Portal</a>
+                </span>
+            </div>
+          <%--  <div style="width:25%;float:right;">
+                <span >
+                    <asp:DropDownList ID="ddlClients" Visible="false" runat="server" DataTextField="Client_Name" DataValueField="Id"></asp:DropDownList>
+                </span>
+                <span >
+                    <asp:HyperLink NavigateUrl="~/Account/Login.aspx" runat="server" ID="hypLogin" Text="Login"></asp:HyperLink>
+                </span>
+                <span >
+                    <asp:HyperLink NavigateUrl="~/Logout.aspx" runat="server" ID="hypLogout" Text="Logout"></asp:HyperLink>
+                </span>
+            </div>--%>
+        </div>
+
+            <p>
+            </p>
+
+            <br />
+            <div class="content-main">
+            
+            <div style="clear:both"></div>
+
+            <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+            <div class="content-body">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            <div style="clear:both"></div> 
+            </div>
+                   
+            </div>
+        
+        <footer class="footer-bar">
+                <div class="content-wrapper">
+                    <div align="center">
+                        <p class="footer-heading">
+                            &copy; <%: DateTime.Now.Year %> - Tipperary Trading
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        
+    </form>
+</body>
+</html>

@@ -1,0 +1,8 @@
+D:\Projects\Git\TechScreen\TechScreen.Repositories\bin\Release\TechScreen.Repositories.dll
+D:\Projects\Git\TechScreen\TechScreen.Repositories\bin\Release\TechScreen.Repositories.pdb
+D:\Projects\Git\TechScreen\TechScreen.Repositories\bin\Release\AutoMapper.dll
+D:\Projects\Git\TechScreen\TechScreen.Repositories\bin\Release\TechScreen.Entities.dll
+D:\Projects\Git\TechScreen\TechScreen.Repositories\bin\Release\TechScreen.Entities.pdb
+D:\Projects\Git\TechScreen\TechScreen.Repositories\obj\Release\TechScreen.Repositories.csprojResolveAssemblyReference.cache
+D:\Projects\Git\TechScreen\TechScreen.Repositories\obj\Release\TechScreen.Repositories.dll
+D:\Projects\Git\TechScreen\TechScreen.Repositories\obj\Release\TechScreen.Repositories.pdb

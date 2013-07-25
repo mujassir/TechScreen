@@ -1,0 +1,8 @@
+D:\Projects\Git\TechScreen\TechScreen.Mapping\bin\Debug\TechScreen.Mapping.dll
+D:\Projects\Git\TechScreen\TechScreen.Mapping\bin\Debug\TechScreen.Mapping.pdb
+D:\Projects\Git\TechScreen\TechScreen.Mapping\bin\Debug\AutoMapper.dll
+D:\Projects\Git\TechScreen\TechScreen.Mapping\bin\Debug\TechScreen.Entities.dll
+D:\Projects\Git\TechScreen\TechScreen.Mapping\bin\Debug\TechScreen.Entities.pdb
+D:\Projects\Git\TechScreen\TechScreen.Mapping\obj\Debug\TechScreen.Mapping.csprojResolveAssemblyReference.cache
+D:\Projects\Git\TechScreen\TechScreen.Mapping\obj\Debug\TechScreen.Mapping.dll
+D:\Projects\Git\TechScreen\TechScreen.Mapping\obj\Debug\TechScreen.Mapping.pdb

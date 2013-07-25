@@ -1,0 +1,15 @@
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\TechScreen.Web.dll
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\TechScreen.Web.pdb
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\AutoMapper.dll
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\Newtonsoft.Json.dll
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\TechScreen.Common.dll
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\TechScreen.Entities.dll
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\TechScreen.Repositories.dll
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\TechScreen.Common.pdb
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\TechScreen.Entities.pdb
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\TechScreen.Repositories.pdb
+D:\Projects\Git\TechScreen\TechScreen.Web\obj\Release\TechScreen.Web.csprojResolveAssemblyReference.cache
+D:\Projects\Git\TechScreen\TechScreen.Web\obj\Release\TechScreen.Web.dll
+D:\Projects\Git\TechScreen\TechScreen.Web\obj\Release\TechScreen.Web.pdb
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\TechScreen.Mapping.dll
+D:\Projects\Git\TechScreen\TechScreen.Web\bin\TechScreen.Mapping.pdb

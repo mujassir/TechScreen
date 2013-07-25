@@ -10,6 +10,7 @@
           <EntitySet Name="Candidate" EntityType="TechScreenModel.Store.Candidate" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Client" EntityType="TechScreenModel.Store.Client" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Position" EntityType="TechScreenModel.Store.Position" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PositionSkills" EntityType="TechScreenModel.Store.PositionSkills" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Question" EntityType="TechScreenModel.Store.Question" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Recruiter" EntityType="TechScreenModel.Store.Recruiter" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Roles" EntityType="TechScreenModel.Store.Roles" store:Type="Tables" Schema="dbo" />
@@ -29,9 +30,17 @@
             <End Role="Skill" EntitySet="Skill" />
             <End Role="Position" EntitySet="Position" />
           </AssociationSet>
-          <AssociationSet Name="FK_Position_SecondarySkillID" Association="TechScreenModel.Store.FK_Position_SecondarySkillID">
-            <End Role="Skill" EntitySet="Skill" />
+          <AssociationSet Name="FK_Position_Recruiter" Association="TechScreenModel.Store.FK_Position_Recruiter">
+            <End Role="Recruiter" EntitySet="Recruiter" />
             <End Role="Position" EntitySet="Position" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PositionSkills_Position" Association="TechScreenModel.Store.FK_PositionSkills_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="PositionSkills" EntitySet="PositionSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PositionSkills_Skill" Association="TechScreenModel.Store.FK_PositionSkills_Skill">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="PositionSkills" EntitySet="PositionSkills" />
           </AssociationSet>
           <AssociationSet Name="FK_Question_skillID" Association="TechScreenModel.Store.FK_Question_skillID">
             <End Role="Skill" EntitySet="Skill" />
@@ -127,12 +136,21 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="RecruiterId" Type="int" />
           <Property Name="PrimarySkillId" Type="int" />
-          <Property Name="SecondarySkillId" Type="int" />
           <Property Name="ReqNumber" Type="varchar" MaxLength="100" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="1000" />
           <Property Name="PrimarySkillLevel" Type="int" />
-          <Property Name="SecondarySkillLevel" Type="int" />
+          <Property Name="RecruiterName" Type="varchar" MaxLength="50" />
+          <Property Name="PrimarySkillName" Type="varchar" MaxLength="50" />
+          <Property Name="RecordStatus" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PositionSkills">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+          <Property Name="SkillId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -151,11 +169,12 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TopLevelClientId" Type="int" />
+          <Property Name="TopLevelClientName" Type="varchar" MaxLength="50" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
-          <Property Name="PhonePrimary" Type="varchar" MaxLength="10" />
-          <Property Name="PhoneSecondary" Type="varchar" MaxLength="10" />
+          <Property Name="PhonePrimary" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneSecondary" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -174,11 +193,11 @@
           <Property Name="Address1" Type="varchar" MaxLength="50" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
-          <Property Name="State" Type="varchar" MaxLength="2" />
-          <Property Name="Zip" Type="int" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Zip" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
-          <Property Name="PhonePrimary" Type="varchar" MaxLength="10" />
-          <Property Name="PhoneSecondary" Type="varchar" MaxLength="10" />
+          <Property Name="PhonePrimary" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneSecondary" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ScreenerSkillxRef">
           <Key>
@@ -281,15 +300,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Position_SecondarySkillID">
-          <End Role="Skill" Type="TechScreenModel.Store.Skill" Multiplicity="0..1" />
+        <Association Name="FK_Position_Recruiter">
+          <End Role="Recruiter" Type="TechScreenModel.Store.Recruiter" Multiplicity="0..1" />
           <End Role="Position" Type="TechScreenModel.Store.Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recruiter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Position">
+              <PropertyRef Name="RecruiterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PositionSkills_Position">
+          <End Role="Position" Type="TechScreenModel.Store.Position" Multiplicity="1" />
+          <End Role="PositionSkills" Type="TechScreenModel.Store.PositionSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PositionSkills">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PositionSkills_Skill">
+          <End Role="Skill" Type="TechScreenModel.Store.Skill" Multiplicity="1" />
+          <End Role="PositionSkills" Type="TechScreenModel.Store.PositionSkills" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Skill">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Position">
-              <PropertyRef Name="SecondarySkillId" />
+            <Dependent Role="PositionSkills">
+              <PropertyRef Name="SkillId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -434,6 +477,7 @@
           <EntitySet Name="Candidates" EntityType="TechScreenModel.Candidate" />
           <EntitySet Name="Clients" EntityType="TechScreenModel.Client" />
           <EntitySet Name="Positions" EntityType="TechScreenModel.Position" />
+          <EntitySet Name="PositionSkills" EntityType="TechScreenModel.PositionSkill" />
           <EntitySet Name="Questions" EntityType="TechScreenModel.Question" />
           <EntitySet Name="Recruiters" EntityType="TechScreenModel.Recruiter" />
           <EntitySet Name="Roles" EntityType="TechScreenModel.Role" />
@@ -461,13 +505,21 @@
             <End Role="Skill" EntitySet="Skills" />
             <End Role="Position" EntitySet="Positions" />
           </AssociationSet>
-          <AssociationSet Name="FK_Position_SecondarySkillID" Association="TechScreenModel.FK_Position_SecondarySkillID">
-            <End Role="Skill" EntitySet="Skills" />
+          <AssociationSet Name="FK_Position_Recruiter" Association="TechScreenModel.FK_Position_Recruiter">
+            <End Role="Recruiter" EntitySet="Recruiters" />
             <End Role="Position" EntitySet="Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PositionSkills_Position" Association="TechScreenModel.FK_PositionSkills_Position">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="PositionSkill" EntitySet="PositionSkills" />
           </AssociationSet>
           <AssociationSet Name="FK_Screening_positionID" Association="TechScreenModel.FK_Screening_positionID">
             <End Role="Position" EntitySet="Positions" />
             <End Role="Screening" EntitySet="Screenings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PositionSkills_Skill" Association="TechScreenModel.FK_PositionSkills_Skill">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="PositionSkill" EntitySet="PositionSkills" />
           </AssociationSet>
           <AssociationSet Name="FK_Question_skillID" Association="TechScreenModel.FK_Question_skillID">
             <End Role="Skill" EntitySet="Skills" />
@@ -554,15 +606,27 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="RecruiterId" />
           <Property Type="Int32" Name="PrimarySkillId" />
-          <Property Type="Int32" Name="SecondarySkillId" />
           <Property Type="String" Name="ReqNumber" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="PrimarySkillLevel" />
-          <Property Type="Int32" Name="SecondarySkillLevel" />
+          <Property Type="String" Name="RecruiterName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PrimarySkillName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Byte" Name="RecordStatus" Nullable="false" />
           <NavigationProperty Name="Skill" Relationship="TechScreenModel.FK_Position_primarySkillID" FromRole="Position" ToRole="Skill" />
-          <NavigationProperty Name="Skill1" Relationship="TechScreenModel.FK_Position_SecondarySkillID" FromRole="Position" ToRole="Skill" />
+          <NavigationProperty Name="Recruiter" Relationship="TechScreenModel.FK_Position_Recruiter" FromRole="Position" ToRole="Recruiter" />
+          <NavigationProperty Name="PositionSkills" Relationship="TechScreenModel.FK_PositionSkills_Position" FromRole="Position" ToRole="PositionSkill" />
           <NavigationProperty Name="Screenings" Relationship="TechScreenModel.FK_Screening_positionID" FromRole="Position" ToRole="Screening" />
+        </EntityType>
+        <EntityType Name="PositionSkill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PositionId" Nullable="false" />
+          <Property Type="Int32" Name="SkillId" Nullable="false" />
+          <NavigationProperty Name="Position" Relationship="TechScreenModel.FK_PositionSkills_Position" FromRole="PositionSkill" ToRole="Position" />
+          <NavigationProperty Name="Skill" Relationship="TechScreenModel.FK_PositionSkills_Skill" FromRole="PositionSkill" ToRole="Skill" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -583,11 +647,13 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="TopLevelClientId" />
+          <Property Type="String" Name="TopLevelClientName" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PhonePrimary" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PhoneSecondary" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PhonePrimary" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PhoneSecondary" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Positions" Relationship="TechScreenModel.FK_Position_Recruiter" FromRole="Recruiter" ToRole="Position" />
           <NavigationProperty Name="TopLevelClient" Relationship="TechScreenModel.FK_Recruiter_toplevelclientID" FromRole="Recruiter" ToRole="TopLevelClient" />
         </EntityType>
         <EntityType Name="Role">
@@ -607,11 +673,11 @@
           <Property Type="String" Name="Address1" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Address2" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="City" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="State" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="Zip" />
+          <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Zip" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PhonePrimary" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="PhoneSecondary" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PhonePrimary" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PhoneSecondary" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ScreenerSkillxRefs" Relationship="TechScreenModel.FK_ScreenerSkillxRef_screenerID" FromRole="Screener" ToRole="ScreenerSkillxRef" />
           <NavigationProperty Name="Screenings" Relationship="TechScreenModel.FK_Screening_screenerID" FromRole="Screener" ToRole="Screening" />
         </EntityType>
@@ -674,7 +740,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Positions" Relationship="TechScreenModel.FK_Position_primarySkillID" FromRole="Skill" ToRole="Position" />
-          <NavigationProperty Name="Positions1" Relationship="TechScreenModel.FK_Position_SecondarySkillID" FromRole="Skill" ToRole="Position" />
+          <NavigationProperty Name="PositionSkills" Relationship="TechScreenModel.FK_PositionSkills_Skill" FromRole="Skill" ToRole="PositionSkill" />
           <NavigationProperty Name="Questions" Relationship="TechScreenModel.FK_Question_skillID" FromRole="Skill" ToRole="Question" />
           <NavigationProperty Name="ScreenerSkillxRefs" Relationship="TechScreenModel.FK_ScreenerSkillxRef_skillID" FromRole="Skill" ToRole="ScreenerSkillxRef" />
         </EntityType>
@@ -757,15 +823,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Position_SecondarySkillID">
-          <End Type="TechScreenModel.Skill" Role="Skill" Multiplicity="0..1" />
+        <Association Name="FK_Position_Recruiter">
+          <End Type="TechScreenModel.Recruiter" Role="Recruiter" Multiplicity="0..1" />
           <End Type="TechScreenModel.Position" Role="Position" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Skill">
+            <Principal Role="Recruiter">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Position">
-              <PropertyRef Name="SecondarySkillId" />
+              <PropertyRef Name="RecruiterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PositionSkills_Position">
+          <End Type="TechScreenModel.Position" Role="Position" Multiplicity="1" />
+          <End Type="TechScreenModel.PositionSkill" Role="PositionSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PositionSkill">
+              <PropertyRef Name="PositionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -778,6 +856,18 @@
             </Principal>
             <Dependent Role="Screening">
               <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PositionSkills_Skill">
+          <End Type="TechScreenModel.Skill" Role="Skill" Multiplicity="1" />
+          <End Type="TechScreenModel.PositionSkill" Role="PositionSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PositionSkill">
+              <PropertyRef Name="SkillId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -931,14 +1021,24 @@
           <EntitySetMapping Name="Positions">
             <EntityTypeMapping TypeName="TechScreenModel.Position">
               <MappingFragment StoreEntitySet="Position">
-                <ScalarProperty Name="SecondarySkillLevel" ColumnName="SecondarySkillLevel" />
+                <ScalarProperty Name="RecordStatus" ColumnName="RecordStatus" />
+                <ScalarProperty Name="PrimarySkillName" ColumnName="PrimarySkillName" />
+                <ScalarProperty Name="RecruiterName" ColumnName="RecruiterName" />
                 <ScalarProperty Name="PrimarySkillLevel" ColumnName="PrimarySkillLevel" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ReqNumber" ColumnName="ReqNumber" />
-                <ScalarProperty Name="SecondarySkillId" ColumnName="SecondarySkillId" />
                 <ScalarProperty Name="PrimarySkillId" ColumnName="PrimarySkillId" />
                 <ScalarProperty Name="RecruiterId" ColumnName="RecruiterId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PositionSkills">
+            <EntityTypeMapping TypeName="TechScreenModel.PositionSkill">
+              <MappingFragment StoreEntitySet="PositionSkills">
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -963,6 +1063,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="TopLevelClientName" ColumnName="TopLevelClientName" />
                 <ScalarProperty Name="TopLevelClientId" ColumnName="TopLevelClientId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -1098,27 +1199,30 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model1">
-        <EntityTypeShape EntityType="TechScreenModel.AnswerStatu" Width="1.5" PointX="5.6420421496229443" PointY="17.391985513918094" />
-        <EntityTypeShape EntityType="TechScreenModel.Candidate" Width="1.5" PointX="2.7283231964001073" PointY="18.148032018052429" />
-        <EntityTypeShape EntityType="TechScreenModel.Client" Width="1.5" PointX="11.600049510411941" PointY="24.443933334408296" />
-        <EntityTypeShape EntityType="TechScreenModel.Position" Width="1.5" PointX="1.4735361083753111" PointY="0.074795410071870044" />
-        <EntityTypeShape EntityType="TechScreenModel.Question" Width="1.5" PointX="7.3650045689963761" PointY="14.09589742780472" />
-        <EntityTypeShape EntityType="TechScreenModel.Recruiter" Width="1.5" PointX="6.6474599012394719" PointY="19.945051545251651" />
-        <EntityTypeShape EntityType="TechScreenModel.Role" Width="1.5" PointX="10.921986193825484" PointY="13.529874167186149" />
-        <EntityTypeShape EntityType="TechScreenModel.Screener" Width="1.5" PointX="8.532765038559571" PointY="24.953902926740192" />
-        <EntityTypeShape EntityType="TechScreenModel.ScreenerSkillxRef" Width="1.5" PointX="8.76061871683254" PointY="16.857192866903354" />
-        <EntityTypeShape EntityType="TechScreenModel.Screening" Width="1.5" PointX="8.9630854655816616" PointY="24.576844375849163" />
-        <EntityTypeShape EntityType="TechScreenModel.ScreeningQA" Width="1.5" PointX="0.1025700085342722" PointY="7.9208225644756212" />
-        <EntityTypeShape EntityType="TechScreenModel.ScreeningStatu" Width="1.5" PointX="7.8949302024650061" PointY="3.269197346302307" />
-        <EntityTypeShape EntityType="TechScreenModel.Skill" Width="1.5" PointX="7.7355444020291539" PointY="15.037904478161551" />
-        <EntityTypeShape EntityType="TechScreenModel.TopLevelClient" Width="1.5" PointX="4.3718086948487018" PointY="23.231806110232977" />
-        <EntityTypeShape EntityType="TechScreenModel.User" Width="1.5" PointX="10.926453681162769" PointY="14.113770297781457" />
+        <EntityTypeShape EntityType="TechScreenModel.AnswerStatu" Width="1.5" PointX="0.630258869673246" PointY="26.487495226081226" />
+        <EntityTypeShape EntityType="TechScreenModel.Candidate" Width="1.5" PointX="5.2047200283057613" PointY="17.771731548836328" />
+        <EntityTypeShape EntityType="TechScreenModel.Client" Width="1.5" PointX="7.3785602298465376" PointY="17.229297392642728" />
+        <EntityTypeShape EntityType="TechScreenModel.Position" Width="1.5" PointX="11.943452887210739" PointY="25.071013924233156" />
+        <EntityTypeShape EntityType="TechScreenModel.PositionSkill" Width="1.5" PointX="6.42911721320316" PointY="19.480418840181276" />
+        <EntityTypeShape EntityType="TechScreenModel.Question" Width="1.5" PointX="0.85240621531959926" PointY="10.303705428868396" />
+        <EntityTypeShape EntityType="TechScreenModel.Recruiter" Width="1.5" PointX="0.44331257252176881" PointY="2.8527963919810935" />
+        <EntityTypeShape EntityType="TechScreenModel.Role" Width="1.5" PointX="10.760518177766596" PointY="9.9532173769330683" />
+        <EntityTypeShape EntityType="TechScreenModel.Screener" Width="1.5" PointX="0.23925711225683669" PointY="21.384479294244422" />
+        <EntityTypeShape EntityType="TechScreenModel.ScreenerSkillxRef" Width="1.5" PointX="2.1143356515627052" PointY="10.495142136931021" />
+        <EntityTypeShape EntityType="TechScreenModel.Screening" Width="1.5" PointX="7.2485206794219659" PointY="0.800387189164938" />
+        <EntityTypeShape EntityType="TechScreenModel.ScreeningQA" Width="1.5" PointX="0.97968756080590547" PointY="26.92229908468309" />
+        <EntityTypeShape EntityType="TechScreenModel.ScreeningStatu" Width="1.5" PointX="5.0439807181451375" PointY="27.017520768110415" />
+        <EntityTypeShape EntityType="TechScreenModel.Skill" Width="1.5" PointX="8.0019258726397187" PointY="29.247261344104661" />
+        <EntityTypeShape EntityType="TechScreenModel.TopLevelClient" Width="1.5" PointX="8.2390488294135071" PointY="15.810885839076194" />
+        <EntityTypeShape EntityType="TechScreenModel.User" Width="1.5" PointX="4.2976134793356131" PointY="0.28773917271184696" />
         <AssociationConnector Association="TechScreenModel.FK_ScreeningQA_answerStatusID" />
         <AssociationConnector Association="TechScreenModel.FK_Screening_candidateID" />
         <AssociationConnector Association="TechScreenModel.FK_Client_toplevelclientID" />
         <AssociationConnector Association="TechScreenModel.FK_Position_primarySkillID" />
-        <AssociationConnector Association="TechScreenModel.FK_Position_SecondarySkillID" />
+        <AssociationConnector Association="TechScreenModel.FK_Position_Recruiter" />
+        <AssociationConnector Association="TechScreenModel.FK_PositionSkills_Position" />
         <AssociationConnector Association="TechScreenModel.FK_Screening_positionID" />
+        <AssociationConnector Association="TechScreenModel.FK_PositionSkills_Skill" />
         <AssociationConnector Association="TechScreenModel.FK_Question_skillID" />
         <AssociationConnector Association="TechScreenModel.FK_ScreeningQA_questionID" />
         <AssociationConnector Association="TechScreenModel.FK_Recruiter_toplevelclientID" />

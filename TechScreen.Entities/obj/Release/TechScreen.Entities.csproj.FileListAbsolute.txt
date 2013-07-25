@@ -1,0 +1,6 @@
+D:\Projects\Git\TechScreen\TechScreen.Entities\bin\Release\TechScreen.Entities.dll.config
+D:\Projects\Git\TechScreen\TechScreen.Entities\bin\Release\TechScreen.Entities.dll
+D:\Projects\Git\TechScreen\TechScreen.Entities\bin\Release\TechScreen.Entities.pdb
+D:\Projects\Git\TechScreen\TechScreen.Entities\obj\Release\TechScreen.Entities.csprojResolveAssemblyReference.cache
+D:\Projects\Git\TechScreen\TechScreen.Entities\obj\Release\TechScreen.Entities.dll
+D:\Projects\Git\TechScreen\TechScreen.Entities\obj\Release\TechScreen.Entities.pdb

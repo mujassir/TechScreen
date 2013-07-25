@@ -1,0 +1,4 @@
+D:\Projects\Git\TechScreen\TechScreen.Common\bin\Debug\TechScreen.Common.dll
+D:\Projects\Git\TechScreen\TechScreen.Common\bin\Debug\TechScreen.Common.pdb
+D:\Projects\Git\TechScreen\TechScreen.Common\obj\Debug\TechScreen.Common.dll
+D:\Projects\Git\TechScreen\TechScreen.Common\obj\Debug\TechScreen.Common.pdb

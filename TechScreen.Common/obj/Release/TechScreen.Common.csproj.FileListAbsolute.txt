@@ -1,0 +1,5 @@
+D:\Projects\Git\TechScreen\TechScreen.Common\bin\Release\TechScreen.Common.dll
+D:\Projects\Git\TechScreen\TechScreen.Common\bin\Release\TechScreen.Common.pdb
+D:\Projects\Git\TechScreen\TechScreen.Common\obj\Release\TechScreen.Common.csprojResolveAssemblyReference.cache
+D:\Projects\Git\TechScreen\TechScreen.Common\obj\Release\TechScreen.Common.dll
+D:\Projects\Git\TechScreen\TechScreen.Common\obj\Release\TechScreen.Common.pdb
