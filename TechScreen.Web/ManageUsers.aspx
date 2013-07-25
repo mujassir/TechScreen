@@ -31,11 +31,7 @@
     <div id='divdialog' style="display: none;">
         <input type="hidden" id='txtID' value='0' />
         <table>
-            <tr>
-                <td colspan='2' style='text-align: center;'>
-                    <span class='error-label' id='lblError'></span>
-                </td>
-            </tr>
+           
             <tr>
                 <td>Username
                 </td>
@@ -119,6 +115,7 @@
                 autoOpen: false,
                 draggable: true,
                 modal: true,
+                width:400,
                 resizable: true,
                 start: "slide",
                 title: "User Detail",

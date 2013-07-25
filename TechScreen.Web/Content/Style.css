@@ -213,7 +213,16 @@ table {
     display:inline-block;
 }
 
+
+
+
 /* datatable bootstrap css end */
+
+
+.ui-dialog table > tbody > tr:first-child td {
+
+border-width:0px !important;
+}
 
 .title {
     width: 1100px;
@@ -262,6 +271,13 @@ a.largBtn {
         font-weight: bold;
         font-size: 14px;
     }
+
+.icon {
+cursor:pointer;
+
+}
+
+
 
 a.largBtn {
     background: url(images/largBtn.png) no-repeat right -41px scroll;

@@ -21,9 +21,12 @@
     <script type="text/javascript" src="Content/loadmask/jquery.loadmask.min.js"></script>
     <script type="text/javascript" src="Content/menu/menu.js"></script>
     <script type="text/javascript" src="Content/chosen/chosen.jquery.js"></script>
-    <style type="text/css">
-       
-    </style>
+
+     <%--<link href="Content/jquery-ui-bootstrap/assets/css/bootstrap.min.css" rel="stylesheet">--%>
+            <link type="text/css" href="Content/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet" />
+            <%--<link type="text/css" href="Content/jquery-ui-bootstrap/assets/css/font-awesome.min.css" rel="stylesheet" />--%>
+
+
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
 </head>
 <body>
