@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MenuMaster.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BootstrapMaster.Master" AutoEventWireup="true"
     CodeBehind="ManageClients.aspx.cs" Inherits="TechScreen.Web.ManageClients" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
@@ -6,12 +6,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="Server">
-    <p>
-        <h3>
-            Manage Clients
-        </h3>
-    </p>
-    <table cellpadding="0" cellspacing="0" border="0" class="display" id="tblData" width="100%">
+  <a class="largBtn">
+        <span>Manage Clients</span></a>
+    <table cellpadding="0" cellspacing="0" border="0" class="bordered-table zebra-striped" id="tblData" width="100%">
         <thead>
             <tr>
                 <th>
@@ -145,15 +142,7 @@
                     <input id='txtaddress2' type="text" class="txtsmall" />
                 </td>
             </tr>
-            <tr id="trSendEmail">
-                <td>
-                </td>
-                <td>
-                    <input type="checkbox" id="chkSend_Email" />
-                    <label for="chkSend_Email">
-                        Send Email</label>
-                </td>
-            </tr>
+         
         </table>
     </div>
     <script type="text/javascript">
@@ -168,15 +157,18 @@
         }
         $(document).ready(function () {
             oTable = $('#tblData').dataTable({
-                bJQueryUI: true,
-                "sPaginationType": "full_numbers",
+                //bJQueryUI: true,
+                "sDom": "<'row'<'span8'l><'span8'f>r>t<'row'<'span8'i><'span8'p>>",
+                "sPaginationType": "bootstrap",
+                "iDisplayLength": 25,
+                //"sPaginationType": "full_numbers",
                 "bProcessing": true,
                 "bServerSide": true,
                 "sAjaxSource": "ManageClients.aspx?key=GetDataTable",
                 "fnDrawCallback": function () {
                     var d = $("#btnAddNewRow").attr("id") + "";
                     if (d == "" || d == "null" || d == "undefined") {
-                        var html = " &nbsp;<button type='button' class='add_row ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-state-hover' id='btnAddNewRow' onclick='AddNew()'><span class='ui-button-icon-primary ui-icon ui-icon-plus'></span><span class='ui-button-text'>Add...</span></button>";
+                        var html = "<button type='button' class='btn' id='btnAddNewRow' onclick='AddNew()'><span class='ui-button-icon-primary ui-icon ui-icon-plus'></span><span class='ui-button-text'>New</span></button>";
                         $('#tblData_length').append(html);
                     }
                 }
@@ -188,6 +180,7 @@
                 modal: true,
                 resizable: true,
                 width: 450,
+                height:500,
                 title: "Client Detail",
                 buttons: [
                     {

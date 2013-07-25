@@ -1,14 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BootstrapMaster.Master" AutoEventWireup="true"
-    CodeBehind="ManageRecruiter.aspx.cs" Inherits="TechScreen.Web.ManageRecruiter" %>
+    CodeBehind="ManageClients.aspx.cs" Inherits="TechScreen.Web.ManageClients" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="Server">
-   
-    <a class="largBtn">
-        <span>Manage Recruiter</span></a>
+     <a class="largBtn">
+        <span>Manage Clients</span></a>
     <table cellpadding="0" cellspacing="0" border="0" class="bordered-table zebra-striped" id="tblData" width="100%">
         <thead>
             <tr>
@@ -16,12 +15,17 @@
                     Name
                 </th>
                 <th>
-                   Top Level ClientName
+                    TopLevelClient Name
                 </th>
                 <th>
-                  Email
+                    Email
                 </th>
-              
+                <th>
+                    State
+                </th>
+                <th>
+                    City
+                </th>
                 <th>
                     PhonePrimary
                 </th>
@@ -42,33 +46,20 @@
         <table>
             <tr>
                 <td>
-                    Top Level Client
+                    TopLevel Client Name
                 </td>
                 <td>
-                    <select id="TopLevelClientId" class="txtsmall">
-                        <asp:Repeater runat="server" ID="rpttlclients">
-                            <ItemTemplate>
-                                <option value='<%#DataBinder.Eval(Container.DataItem,"Id")%>'><%# DataBinder.Eval(Container.DataItem,"Name")%></option>
-                                </otpion>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </select>
+                    <asp:DropDownList ID="ddltlclients" DataTextField="Name" ClientIDMode="Static" CssClass="txtsmall"
+                        DataValueField="id" runat="server">
+                    </asp:DropDownList>
                 </td>
             </tr>
             <tr>
                 <td>
-                    First Name
+                    Client Name
                 </td>
                 <td>
-                    <input id='FirstName' type="text" class="txtsmall" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Last Name
-                </td>
-                <td>
-                    <input id='LastName' type="text" class="txtsmall" />
+                    <input id='txtClient_Name' type="text" class="txtsmall" />
                 </td>
             </tr>
             <tr>
@@ -76,7 +67,47 @@
                     Email
                 </td>
                 <td>
-                    <input id='Email' type="text" class="txtsmall" />
+                    <input id='txtemail' type="text" class="txtsmall" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Stat
+                </td>
+                <td>
+                    <input id='txtstat' type="text" class="txtsmall" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    City
+                </td>
+                <td>
+                    <input id='txtcity' type="text" class="txtsmall number" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Zip
+                </td>
+                <td>
+                    <input id='txtzip' type="text" class="txtsmall" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Contact First Name
+                </td>
+                <td>
+                    <input id='txtcontactfristname' type="text" class="txtsmall" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Contact Last Name
+                </td>
+                <td>
+                    <input id='txtcontactlastname' type="text" class="txtsmall" />
                 </td>
             </tr>
             <tr>
@@ -84,7 +115,7 @@
                     Phone Primary
                 </td>
                 <td>
-                    <input id='PhonePrimary' type="text" class="txtsmall" />
+                    <input id='txtphoneprimary' type="text" class="txtsmall" />
                 </td>
             </tr>
             <tr>
@@ -92,7 +123,32 @@
                     Phone Secondary
                 </td>
                 <td>
-                    <input id='PhoneSecondary' type="text" class="txtsmall" />
+                    <input id='txtphonesecondary' type="text" class="txtsmall" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Address 1
+                </td>
+                <td>
+                    <input id='txtaddress' type="text" class="txtsmall"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Address 2
+                </td>
+                <td>
+                    <input id='txtaddress2' type="text" class="txtsmall" />
+                </td>
+            </tr>
+            <tr id="trSendEmail">
+                <td>
+                </td>
+                <td>
+                    <input type="checkbox" id="chkSend_Email" />
+                    <label for="chkSend_Email">
+                        Send Email</label>
                 </td>
             </tr>
         </table>
@@ -108,7 +164,7 @@
 
         }
         $(document).ready(function () {
-           oTable = $('#tblData').dataTable({
+            oTable = $('#tblData').dataTable({
                 //bJQueryUI: true,
                 "sDom": "<'row'<'span8'l><'span8'f>r>t<'row'<'span8'i><'span8'p>>",
                 "sPaginationType": "bootstrap",
@@ -116,9 +172,9 @@
                 //"sPaginationType": "full_numbers",
                 "bProcessing": true,
                 "bServerSide": true,
-                "sAjaxSource": "ManageRecruiter.aspx?key=GetDataTable",
+                "sAjaxSource": "ManageClients.aspx?key=GetDataTable",
                 "fnDrawCallback": function () {
-                     var d = $("#btnAddNewRow").attr("id") + "";
+                    var d = $("#btnAddNewRow").attr("id") + "";
                     if (d == "" || d == "null" || d == "undefined") {
                         var html = "<button type='button' class='btn' id='btnAddNewRow' onclick='AddNew()'><span class='ui-button-icon-primary ui-icon ui-icon-plus'></span><span class='ui-button-text'>New</span></button>";
                         $('#tblData_length').append(html);
@@ -132,7 +188,7 @@
                 modal: true,
                 resizable: true,
                 width: 450,
-                title: "Recruiter Detail",
+                title: "Client Detail",
                 buttons: [
                     {
                         text: "Close",
@@ -165,18 +221,24 @@
 
             var user = {
                 Id: $("#txtID").val(),
-                FirstName: $("#FirstName").val(),
-                LastName: $("#LastName").val(),
-                TopLevelClientId: $("#TopLevelClientId").val(),
-                TopLevelClientName: $("#TopLevelClientId option:selected").text().trim(),
-                Email: $("#Email").val(),
-                PhonePrimary: $("#PhonePrimary").val(),
-                PhoneSecondary: $("#PhoneSecondary").val(),
-               };
+                Name: $("#txtClient_Name").val(),
+                TopLevelClientId: $("#ddltlclients").val(),
+                TopLevelClientName: $("#ddltlclients option:selected").text().trim(),
+                City: $("#txtcity").val(),
+                State: $("#txtstat").val(),
+                Zip: $("#txtzip").val(),
+                Email: $("#txtemail").val(),
+                ContactFirstName: $("#txtcontactfristname").val(),
+                ContactLastName: $("#txtcontactlastname").val(),
+                PhonePrimary: $("#txtphoneprimary").val(),
+                PhoneSecondary: $("#txtphonesecondary").val(),
+                Address1: $("#txtaddress").val(),
+                Address2: $("#txtaddress2").val()
+            };
             var d = "Key=Save";
             d += "&record=" + JSON.stringify(user);
             $.ajax({
-                url: "ManageRecruiter.aspx",
+                url: "ManageClients.aspx",
                 type: "POST",
                 data: d,
                 success: function (response) {
@@ -204,7 +266,7 @@
                 var d = "key=Delete";
                 d += "&id=" + id;
                 $.ajax({
-                    url: "ManageRecruiter.aspx",
+                    url: "ManageClients.aspx",
                     type: "POST",
                     data: d,
                     success: function (response) {
@@ -219,7 +281,7 @@
             var d = "key=GetByID";
             d += "&id=" + id;
             $.ajax({
-                url: "ManageRecruiter.aspx",
+                url: "ManageClients.aspx",
                 type: "POST",
                 data: d,
                 success: function (response) {
@@ -227,13 +289,20 @@
                     if (j != null) {
                         ClearForm();
                         $("#txtID").val(j.Id);
-                        $("#FirstName").val(j.FirstName);
-                        $("#LastName").val(j.LastName);
-                        $("#Email").val(j.Email)
-                        $("#TopLevelClientId").val(j.TopLevelClientId)
-                        $("#PhonePrimary").val(j.PhonePrimary);
-                        $("#PhoneSecondary").val(j.PhoneSecondary);
-                      
+                        $("#txtClient_Name").val(j.Name);
+                        $("#ddltlclients").val(j.TopLevelClientId);
+                        $("#txtemail").val(j.Email)
+                        $("#txtstat").val(j.State);
+                        $("#txtcity").val(j.City);
+                        $("#txtzip").val(j.Zip);
+                        $("#txtcontactfristname").val(j.ContactFirstName);
+                        $("#txtcontactlastname").val(j.ContactLastName);
+                        $("#txtphoneprimary").val(j.PhonePrimary);
+                        $("#txtphonesecondary").val(j.PhoneSecondary);
+                        $("#txtaddress").val(j.Address1);
+                        $("#txtaddress2").val(j.Address2);
+                        $("#trSendEmail").hide();
+
                     }
                 }
             });
@@ -261,7 +330,7 @@
             d += "&id=" + id;
             d += "&status=" + status;
             $.ajax({
-                url: "ManageRecruiter.aspx",
+                url: "ManageClients.aspx",
                 type: "POST",
                 data: d,
                 success: function (response) {

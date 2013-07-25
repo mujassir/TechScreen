@@ -1,15 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MenuMaster.Master" AutoEventWireup="true" CodeBehind="ManageScreener.aspx.cs" Inherits="TechScreen.Web.ManageScreener" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BootstrapMaster.Master" AutoEventWireup="true" CodeBehind="ManageScreener.aspx.cs" Inherits="TechScreen.Web.ManageScreener" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="Server">
-    <p>
-        <h3>Manage Screener
-
-        </h3>
-    </p>
-    <table cellpadding="0" cellspacing="0" border="0" class="display" id="tblData" width="100%">
+    
+    <a class="largBtn">
+        <span>Manage Screener</span></a>
+    <table cellpadding="0" cellspacing="0" border="0" class="bordered-table zebra-striped" id="tblData" width="100%">
         <thead>
             <tr>
 
@@ -121,15 +119,18 @@
         }
         $(document).ready(function () {
             oTable = $('#tblData').dataTable({
-                bJQueryUI: true,
-                "sPaginationType": "full_numbers",
+                //bJQueryUI: true,
+                "sDom": "<'row'<'span8'l><'span8'f>r>t<'row'<'span8'i><'span8'p>>",
+                "sPaginationType": "bootstrap",
+                "iDisplayLength": 25,
+                //"sPaginationType": "full_numbers",
                 "bProcessing": true,
                 "bServerSide": true,
                 "sAjaxSource": "ManageScreener.aspx?key=GetDataTable",
                 "fnDrawCallback": function () {
                     var d = $("#btnAddNewRow").attr("id") + "";
                     if (d == "" || d == "null" || d == "undefined") {
-                        var html = " &nbsp;<button type='button' class='add_row ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-state-hover' id='btnAddNewRow' onclick='AddNew()'><span class='ui-button-icon-primary ui-icon ui-icon-plus'></span><span class='ui-button-text'>Add...</span></button>";
+                        var html = "<button type='button' class='btn' id='btnAddNewRow' onclick='AddNew()'><span class='ui-button-icon-primary ui-icon ui-icon-plus'></span><span class='ui-button-text'>New</span></button>";
                         $('#tblData_length').append(html);
                     }
                 }
