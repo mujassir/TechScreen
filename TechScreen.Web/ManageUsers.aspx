@@ -6,10 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="Server">
-    <p>
-        <h3>Manage Users
-        </h3>
-    </p>
+    <a class="largBtn">
+        <span>Manage Users</span></a>
     <table cellpadding="0" cellspacing="0" border="0" class="bordered-table zebra-striped" id="tblData" width="100%">
         <thead>
             <tr>
@@ -76,7 +74,7 @@
         </table>
     </div>
 
-    
+
     <script type="text/javascript">
         function HideMessage() {
 
@@ -88,7 +86,7 @@
 
         }
 
-       
+
 
 
         $(document).ready(function () {
@@ -111,7 +109,7 @@
                 "fnDrawCallback": function () {
                     var d = $("#btnAddNewRow").attr("id") + "";
                     if (d == "" || d == "null" || d == "undefined") {
-                        var html = "<button type='button' class='add_row ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary ui-state-hover' id='btnAddNewRow' onclick='AddNew()'><span class='ui-button-icon-primary ui-icon ui-icon-plus'></span><span class='ui-button-text'>Add...</span></button>";
+                        var html = "<button type='button' class='btn' id='btnAddNewRow' onclick='AddNew()'><span class='ui-button-icon-primary ui-icon ui-icon-plus'></span><span class='ui-button-text'>New</span></button>";
                         $('#tblData_length').append(html);
                     }
                 }

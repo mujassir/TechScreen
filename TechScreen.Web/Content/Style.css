@@ -1,5 +1,4 @@
-﻿html body
-{
+﻿html body {
     font-family: arial;
     font-size: 10px;
     color: #6e6e6e;
@@ -7,15 +6,17 @@
     padding: 0;
 }
 
-body
-{
+form {
+    margin-bottom: 0px !important;
+}
+
+body {
     background: url("images/sepArea-bg.jpg") repeat;
     padding: 90px 0 70px 0;
     border-top: 1px solid #efefef;
 }
 
-.header-bar
-{
+.header-bar {
     height: 53px;
     background-color: #000;
     border-bottom: 1px solid #191919;
@@ -24,67 +25,50 @@ body
     margin-bottom: 1px;
 }
 
-.header-bar .spLogout
-{
-    position: relative;
-    right: 0px;
-}
+    .header-bar .spLogout {
+        position: relative;
+        right: 0px;
+    }
 
-.site-title
-{
-    color: #f0efee;
-    margin-left: 40px;
-    text-transform: initial;
-    font-weight: bold;
-    font-size: 4.3 em;
-    text-shadow: 0 -1px 0 #1c1e1f;
-    display: inline-block;
-    font-family: 'Yanone Kaffeesatz' , Arial, sans-serif;
-    font-style: italic;
-}
 
-.spLogout
-{
+
+.spLogout {
     text-align: right;
 }
 
-.logout
-{
+.logout {
     font-size: 1.2em;
     color: white;
 }
 
-.site-title a
-{
+.site-title a {
     text-decoration: none;
     color: white;
 }
 
-.page-heading
-{
+.page-heading {
     font-size: 2.7em;
     line-height: 1;
     margin-bottom: 40px;
     color: #568ea8;
-    font-family: 'Yanone Kaffeesatz' , Arial, sans-serif;
+    font-family: 'Yanone Kaffeesatz', Arial, sans-serif;
     letter-spacing: 0;
     text-shadow: 0 1px 0 #fff, 0 3px 0 #ccc;
     font-weight: 700;
 }
 
-.content-main
-{
+.content-main {
     margin: 0 auto;
-    max-width: 960px;
+    max-width: 1040px;
+    background: #FFF;
 }
 
-.content-body
-{
+.content-body {
     min-height: 400px;
+    padding: 10px 20px;
 }
 
-.footer-bar
-{
+.footer-bar {
     background: url("images/slideshow-bg.jpg") repeat;
     color: #f0efee;
     padding: 3px 0 2px 0;
@@ -96,34 +80,29 @@ body
     width: 100%;
 }
 
-footer
-{
+footer {
     height: 70px;
 }
 
-.footer-heading
-{
+.footer-heading {
     color: white;
     font-size: 1.2em;
 }
 
-h3, h4, h5, h6
-{
+h3, h4, h5, h6 {
     margin-bottom: 1em;
-    font-family: 'Yanone Kaffeesatz' , Arial, sans-serif;
+    font-family: 'Yanone Kaffeesatz', Arial, sans-serif;
     letter-spacing: 0;
     color: #5f6f70;
     text-shadow: 0 1px 0 #fff, 0 3px 0 #ccc;
     font-weight: 700;
 }
 
-h3
-{
+h3 {
     font-size: 2em;
 }
 
-.button
-{
+.button {
     background: #56909A;
     color: #fff;
     display: inline-block;
@@ -135,14 +114,12 @@ h3
     border-radius: 2px;
 }
 
-.button:hover
-{
-    background: #417983;
-    text-decoration: none;
-}
+    .button:hover {
+        background: #417983;
+        text-decoration: none;
+    }
 
-.login-form
-{
+.login-form {
     background-color: rgb(219,219,219);
     width: 400px;
     height: 300px;
@@ -152,51 +129,155 @@ h3
     web-kit-border-radius: 11px;
 }
 
-.login-form fieldset
-{
-    border: none;
-    border-radius: 11px;
-    web-kit-border-radius: 11px;
-}
+    .login-form fieldset {
+        border: none;
+        border-radius: 11px;
+        web-kit-border-radius: 11px;
+    }
 
-.login-form fieldset
-{
-    height: 250px;
-}
+    .login-form fieldset {
+        height: 250px;
+    }
 
-.login-fields-wrapper
-{
+.login-fields-wrapper {
     background: #333333;
 }
 
-.label
-{
+.label {
     font-size: 1.2em;
 }
 
-.login-form input[type='text'], .login-form input[type='password'], .login-form select
-{
+.login-form input[type='text'], .login-form input[type='password'], .login-form select {
     width: 250px;
     height: 25px;
 }
 
-.tbl
-{
+.tbl {
     border-collapse: collapse;
     border: 1px solid #CCC;
 }
 
-.tbl th
-{
-    background: #efefef;
-    border: 1px solid #CCC;
-}
+    .tbl th {
+        background: #efefef;
+        border: 1px solid #CCC;
+    }
 
-.tbl td
-{
-    border: 1px solid #CCC;
-}
+    .tbl td {
+        border: 1px solid #CCC;
+    }
 
 .multiselect {
-width:350px;
+    width: 350px;
 }
+
+
+
+
+/* datatable bootstrap css start */
+
+div.dataTables_length label {
+    width: 200px;
+    float: left;
+    text-align: left;
+}
+
+div.dataTables_length select {
+    width: 75px;
+}
+
+div.dataTables_filter label {
+    float: right;
+    width: 460px;
+}
+
+div.dataTables_info {
+    padding-top: 8px;
+}
+
+div.dataTables_paginate {
+    float: right;
+    margin: 0;
+}
+
+table {
+    margin: 1em 0;
+    clear: both;
+}
+
+
+.bordered-table tbody tr:first-child td:first-child, .bordered-table tbody tr:first-child td:last-child {
+    border-radius: 0px;
+}
+
+.btn .ui-icon-plus {
+    display:inline-block;
+}
+
+/* datatable bootstrap css end */
+
+.title {
+    width: 1100px;
+    margin: 0px auto;
+}
+
+    .title .site-title {
+        color: #f0efee;
+        text-transform: initial;
+        font-weight: bold;
+        font-size: 22px;
+        text-shadow: 0 -1px 0 #1c1e1f;
+        display: inline-block;
+        font-family: 'Yanone Kaffeesatz', Arial, sans-serif;
+        font-style: italic;
+    }
+
+    .title #divloggedin {
+        color: #FFF;
+        font-size: 13px;
+        font-weight: bold;
+        float: right;
+    }
+
+        .title #divloggedin a {
+            margin-left: 10px;
+            color: #FFF;
+        }
+
+.page-title {
+    font-size: 15px;
+}
+
+a.largBtn {
+    margin-left: -20px;
+    margin-top: -14px;
+    margin-bottom:10px;
+}
+
+    a.largBtn, a.largBtn span {
+        height: 40px;
+        line-height: 40px;
+        display: inline-block;
+        color: #FFF;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+a.largBtn {
+    background: url(images/largBtn.png) no-repeat right -41px scroll;
+    padding-right: 25px;
+}
+
+    a.largBtn span {
+        background: url(images/largBtn.png) repeat-x 0 0 scroll;
+        padding: 0px 20px 0px 15px;
+    }
+
+    a.largBtn:hover {
+        background: url(images/largBtn.png) no-repeat right -132px scroll;
+    }
+
+        a.largBtn:hover span {
+            background: url(images/largBtn.png) repeat-x 0 -91px scroll;
+            padding: 0px 21px 0px 15px;
+        }
